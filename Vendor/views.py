@@ -159,13 +159,10 @@ def gallery(request, slug_txt):
                 context = {
                     'vendor': vendor,
                     'vendor_images': vendor_images,
-                    'gallery_form': GalleryForm
+                    'gallery_form': GalleryForm,
+                    'logo_form': LogoForm,
+                    'logo': vendor.logo
                 }
-                if vendor.logo != "":
-                    context['logo'] = vendor.logo
-                    context['logo_form'] = LogoForm(instance=vendor)
-                else:
-                    context['logo_form'] = LogoForm
                 return render(request, 'vendor/dashboard.html', context)
             else:
                 acType = AccountType.objects.get(user=request.user)

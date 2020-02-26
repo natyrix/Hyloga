@@ -61,8 +61,8 @@ def registerVendor(request):
                                         phonenumber=phone, address=address,
                                         status=st[1][0], category=cat, login_id=user)
                         vendor.save()
-                        messages.success(request, "Registered successfully")
-                        return redirect('register_vendor')
+                        messages.success(request, "Registered successfully you can now login.")
+                        return render(request, 'accounts/login.html')
             else:
                 messages.error(request, "Passwords do not match")
                 return redirect('register_vendor')

@@ -21,7 +21,7 @@ class Vendor(models.Model):
         ('Unverified', 'Unverified')
     )
     name = models.CharField(max_length=30)
-    logo = models.ImageField(upload_to='vendor_images/', blank=True)
+    logo = models.ImageField(upload_to='vendor_images/', default='vendor_images/default-logo.png')
     slug = models.SlugField(max_length=30, null=True, blank=True)
     phonenumber = models.CharField(max_length=20)
     email = models.CharField(max_length=30)

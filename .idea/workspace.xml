@@ -2,7 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1c70c20b-9df9-44d7-9353-d61393f64e45" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Hailoga/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Hailoga/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vendor/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Vendor/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vendor/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Vendor/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/vendor/gallery.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/vendor/gallery.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/vendor/pricing.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/vendor/pricing.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,8 +21,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Vendor/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="15" selection-start-line="15" selection-end-line="15" />
+            <state relative-caret-position="100">
+              <caret line="23" column="98" lean-forward="true" selection-start-line="23" selection-start-column="98" selection-end-line="23" selection-end-column="98" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -48,8 +54,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Vendor/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2400">
-              <caret line="165" column="68" selection-start-line="165" selection-start-column="68" selection-end-line="165" selection-end-column="68" />
+            <state relative-caret-position="157">
+              <caret line="156" column="43" selection-start-line="156" selection-start-column="43" selection-end-line="156" selection-end-column="43" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -57,11 +63,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/vendor/gallery.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="18" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
+            <state relative-caret-position="45">
+              <caret line="3" column="31" selection-start-line="3" selection-start-column="31" selection-end-line="3" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -69,8 +75,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/vendor/pricing.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret selection-end-column="17" />
+            <state relative-caret-position="510">
+              <caret line="34" column="51" selection-start-line="34" selection-start-column="51" selection-end-line="34" selection-end-column="51" />
             </state>
           </provider>
         </entry>
@@ -78,7 +84,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Vendor/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
+            <state relative-caret-position="105">
               <caret line="8" column="74" selection-start-line="8" selection-start-column="74" selection-end-line="8" selection-end-column="74" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
@@ -87,10 +93,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Hailoga/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
+            <state relative-caret-position="255">
               <caret line="17" selection-start-line="17" selection-end-line="17" />
             </state>
           </provider>
@@ -155,36 +161,29 @@
         <option value="$PROJECT_DIR$/Hailoga/static/css/dashboard.css" />
         <option value="$PROJECT_DIR$/templates/vendor/vendor_base.html" />
         <option value="$PROJECT_DIR$/home/views.py" />
-        <option value="$PROJECT_DIR$/accounts/views.py" />
         <option value="$PROJECT_DIR$/templates/index.html" />
         <option value="$PROJECT_DIR$/templates/vendor/nav.html" />
         <option value="$PROJECT_DIR$/accounts/urls.py" />
         <option value="$PROJECT_DIR$/Vendor/admin.py" />
-        <option value="$PROJECT_DIR$/Vendor/models.py" />
-        <option value="$PROJECT_DIR$/templates/vendor/pricing.html" />
         <option value="$PROJECT_DIR$/templates/vendor/edit_pricing.html" />
         <option value="$PROJECT_DIR$/accounts/forms.py" />
         <option value="$PROJECT_DIR$/Vendor/urls.py" />
         <option value="$PROJECT_DIR$/templates/vendor/dashboard.html" />
         <option value="$PROJECT_DIR$/templates/vendor/side_nav.html" />
         <option value="$PROJECT_DIR$/Vendor/form.py" />
+        <option value="$PROJECT_DIR$/Hailoga/settings.py" />
+        <option value="$PROJECT_DIR$/templates/vendor/pricing.html" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/Vendor/models.py" />
+        <option value="$PROJECT_DIR$/accounts/views.py" />
         <option value="$PROJECT_DIR$/Vendor/views.py" />
         <option value="$PROJECT_DIR$/templates/vendor/gallery.html" />
-        <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/Hailoga/settings.py" />
-      </list>
-    </option>
-  </component>
-  <component name="ProjectConfigurationFiles">
-    <option name="files">
-      <list>
-        <option value="$PROJECT_DIR$/.idea/vcs.xml" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="960" />
-    <option name="y" value="27" />
+    <option name="x" value="2109" />
+    <option name="y" value="11" />
     <option name="width" value="960" />
     <option name="height" value="1029" />
   </component>
@@ -201,6 +200,27 @@
               <item name="Hailoga" type="b2602c69:ProjectViewProjectNode" />
               <item name="Hailoga" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="Hailoga" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Hailoga" type="462c0819:PsiDirectoryNode" />
+              <item name="accounts" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Hailoga" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Hailoga" type="462c0819:PsiDirectoryNode" />
+              <item name="media" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Hailoga" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Hailoga" type="462c0819:PsiDirectoryNode" />
+              <item name="media" type="462c0819:PsiDirectoryNode" />
+              <item name="vendor_images" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Hailoga" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Hailoga" type="462c0819:PsiDirectoryNode" />
+              <item name="Vendor" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -211,19 +231,19 @@
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates/vendor" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/media/vendor_images" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Python" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/templates" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/media/vendor_images" />
       <recent name="$PROJECT_DIR$/templates/vendor" />
       <recent name="$PROJECT_DIR$/templates" />
       <recent name="$PROJECT_DIR$/templates/accounts" />
       <recent name="$PROJECT_DIR$/Hailoga/static/css" />
-      <recent name="$PROJECT_DIR$/Hailoga/static/js" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/templates" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -252,10 +272,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="27" width="1920" height="1029" extended-state="6" />
+    <frame x="1920" y="0" width="1366" height="768" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.09699526" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1370067" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -266,7 +286,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.3200883" />
+      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.2387597" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -558,30 +578,10 @@
     <entry file="file://$PROJECT_DIR$/accounts/forms.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/accounts/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1185">
-          <caret line="136" selection-start-line="136" selection-end-line="136" />
-          <folding>
-            <element signature="e#0#43#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/vendor/side_nav.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="65" column="52" selection-start-line="65" selection-start-column="52" selection-end-line="65" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Vendor/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="15" selection-start-line="15" selection-end-line="15" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -602,10 +602,61 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Vendor/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="8" column="74" selection-start-line="8" selection-start-column="74" selection-end-line="8" selection-end-column="74" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Hailoga/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Vendor/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="23" column="98" lean-forward="true" selection-start-line="23" selection-start-column="98" selection-end-line="23" selection-end-column="98" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/accounts/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="328">
+          <caret line="63" column="93" selection-start-line="63" selection-start-column="93" selection-end-line="63" selection-end-column="93" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/vendor/pricing.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="34" column="51" selection-start-line="34" selection-start-column="51" selection-end-line="34" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Vendor/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2400">
-          <caret line="165" column="68" selection-start-line="165" selection-start-column="68" selection-end-line="165" selection-end-column="68" />
+        <state relative-caret-position="157">
+          <caret line="156" column="43" selection-start-line="156" selection-start-column="43" selection-end-line="156" selection-end-column="43" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
           </folding>
@@ -614,39 +665,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/vendor/gallery.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="18" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/vendor/pricing.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Vendor/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="74" selection-start-line="8" selection-start-column="74" selection-end-line="8" selection-end-column="74" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="10" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Hailoga/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        <state relative-caret-position="45">
+          <caret line="3" column="31" selection-start-line="3" selection-start-column="31" selection-end-line="3" selection-end-column="31" />
         </state>
       </provider>
     </entry>

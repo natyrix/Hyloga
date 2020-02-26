@@ -1,8 +1,7 @@
 {% load static %}
 
-{% if logo %}
 <div class="row">
-  <div class="col-sm-8 col-md-4">
+  <div class="col-sm-7 col-md-2">
     <h5>Your current logo</h5>
     <img src=" {{ logo.url }}" alt="" class="img-fluid img-thumbnail">
   </div>
@@ -17,7 +16,8 @@
     </form>
   </div>
 </div>
-{% endif %}
+<br>
+<div class="col-sm-9 col-md-6">
 <div class="card">
   <div class="card-header bg-dark text-white">
     <h5>
@@ -28,22 +28,13 @@
        {% csrf_token %}
        <div class="row">
          <div class="col">
-           <label>Title</label>
-          {{ pricing_form.title }}
+           <label>Image</label>
+          {{ gallery_form.image_location }}
          </div>
-         <div class="col">
-           <label>Value</label>
-          {{ pricing_form.value }}
-         </div>
-       <div class="col">
-          <label>Detail</label>
-          {{ pricing_form.detail }}
-       </div>
        </div>
        <br>
-       <input type="submit" value="Add" class="btn btn-primary btn-block">
+       <input type="submit" value="Add" class="btn btn-primary">
     </form>
   </div>
 </div>
-
-
+</div>
