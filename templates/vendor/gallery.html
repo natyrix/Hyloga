@@ -7,7 +7,7 @@
   </div>
   <div class="col-sm-8 col-md-4">
     <h5>Update your logo</h5>
-    <form action="" method="post">
+    <form action="{% url 'update_logo' %}" method="post" enctype="multipart/form-data">
       {% csrf_token %}
       <div class="row">
         {{ logo_form.as_p }}
@@ -17,6 +17,7 @@
   </div>
 </div>
 <br>
+<div class="row">
 <div class="col-sm-9 col-md-6">
 <div class="card">
   <div class="card-header bg-dark text-white">
@@ -24,7 +25,7 @@
       Add your Images</h5>
   </div>
   <div class="card-body">
-     <form action="{% url 'add_pricing' %}" method="post">
+     <form action="{% url 'vendor_add_image' %}" method="post" enctype="multipart/form-data">
        {% csrf_token %}
        <div class="row">
          <div class="col">
@@ -38,3 +39,19 @@
   </div>
 </div>
 </div>
+</div>
+<br>
+{% if vendor_images %}
+  <h5>Your Images</h5>
+  <div class="row">
+  {% for img in vendor_images %}
+    <div class="col-sm-7 col-md-2">
+      <h5>#{{ forloop.counter }} </h5>
+      <img src=" {{ img.image_location.url }}" alt="" class="img-fluid img-thumbnail">
+      <a href="{% url 'vendor_delete_image' img.id %}" class="btn-danger btn">Remove</a>
+    </div>
+  {% endfor %}
+  </div>
+{% else %}
+<h5>You have no image</h5>
+{% endif %}

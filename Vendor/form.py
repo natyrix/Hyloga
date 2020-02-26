@@ -22,6 +22,7 @@ class GalleryForm(ModelForm):
         super(GalleryForm, self).__init__(*args, **kwargs)
         for visible in self.visible_fields():
             visible.field.widget.attrs['class'] = 'form-control'
+            visible.field.widget.attrs['required'] = 'required'
 
 
 class LogoForm(ModelForm):
@@ -33,4 +34,4 @@ class LogoForm(ModelForm):
         super(LogoForm, self).__init__(*args, **kwargs)
         for visible in self.visible_fields():
             visible.field.widget.attrs['class'] = 'form-control'
-
+            visible.field.widget.attrs['required'] = 'required'

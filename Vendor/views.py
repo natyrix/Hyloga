@@ -176,3 +176,60 @@ def gallery(request, slug_txt):
 
         else:
             return render(request, 'index.html')
+
+
+def update_logo(request):
+    if request.method == 'POST':
+        if request.user.is_authenticated & isVendor(request.user):
+            vendor = Vendor.objects.get(login_id=request.user)
+            logo_form = LogoForm(request.POST, request.FILES)
+            if logo_form.is_valid():
+                vendor.logo = request.FILES['logo']
+                vendor.save()
+                messages.success(request, 'Logo updated successfully')
+                return redirect('vendor_gallery', vendor.slug)
+            else:
+                messages.error(request, 'Logo updated failed')
+                return redirect('vendor_gallery', vendor.slug)
+    else:
+        return render(request, 'index.html')
+
+
+def add_image(request):
+    if request.method == 'POST':
+        if request.user.is_authenticated & isVendor(request.user):
+            vendor = Vendor.objects.get(login_id=request.user)
+            image_form = GalleryForm(request.POST, request.FILES)
+            if image_form.is_valid():
+                vendorImage = VendorImage(vendor=vendor, image_location=request.FILES['image_location'])
+                vendorImage.save()
+                messages.success(request, "Image added successfully")
+                return redirect('vendor_gallery', vendor.slug)
+            else:
+                messages.error(request, "Upload Failed")
+                return redirect('vendor_gallery', vendor.slug)
+        else:
+            return render(request, 'index.html')
+    else:
+        return render(request, 'index.html')
+
+
+def delete_image(request, img_id):
+    if request.user.is_authenticated & isVendor(request.user):
+        vendor = Vendor.objects.get(login_id=request.user)
+        img = VendorImage.objects.filter(pk=img_id)
+        if img.exists():
+            img = img.first()
+            if vendor == img.vendor:
+                img.delete()
+                messages.warning(request, "Image deleted")
+                return redirect('vendor_gallery', vendor.slug)
+            else:
+                messages.warning(request, "Access Denied")
+                return redirect('vendor_gallery', vendor.slug)
+        else:
+            messages.warning(request, "Image not found")
+            return redirect('vendor_gallery', vendor.slug)
+
+    else:
+        return render(request, 'index.html')
