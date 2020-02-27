@@ -1,0 +1,45 @@
+{% load static %}
+
+<div class="row">
+  <div class="col-sm-9 col-md-6">
+    <div class="card">
+      <div class="card-header bg-dark text-white">
+        <h5>
+          Edit your profile</h5>
+      </div>
+  <div class="card-body">
+    <form method="post" action="{% url 'vendor_edit_profile' %}" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ account_form.as_p }}
+      <input type="submit" value="Edit" class="btn btn-primary">
+    </form>
+    </div>
+  </div>
+  </div>
+  <div class="col-sm-9 col-md-5">
+    <div class="card">
+      <div class="card-header bg-dark text-white">
+        <h5>
+          Change your password</h5>
+      </div>
+  <div class="card-body">
+    <form method="post" action="{% url 'vendor_edit_password' %}" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="old_password">Old Password</label>
+        <input type="password" id="old_password" name="old_password" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="password">New Password</label>
+        <input type="password" id="password" name="password" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="password2">Confirm Password</label>
+        <input type="password" name="password2" id="password2" class="form-control" required>
+      </div>
+      <input type="submit" value="Change" class="btn btn-primary">
+    </form>
+    </div>
+  </div>
+  </div>
+</div>

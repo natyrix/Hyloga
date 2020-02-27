@@ -24,7 +24,7 @@ class Vendor(models.Model):
     logo = models.ImageField(upload_to='vendor_images/', default='vendor_images/default-logo.png')
     slug = models.SlugField(max_length=30, null=True, blank=True)
     phonenumber = models.CharField(max_length=20)
-    email = models.CharField(max_length=30)
+    email = models.EmailField(max_length=30)
     address = models.CharField(max_length=100)
     status = models.CharField(choices=st, max_length=30)
     category = models.ForeignKey(Category, on_delete=models.DO_NOTHING)

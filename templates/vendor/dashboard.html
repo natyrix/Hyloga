@@ -13,7 +13,9 @@
       {% if 'gallery' in request.path %}
         {% include 'vendor/gallery.html' %}
       {% endif %}
-
+      {% if 'account' in request.path %}
+        {% include 'vendor/account.html' %}
+      {% endif %}
     </main>
   </div>
 </div>

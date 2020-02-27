@@ -75,7 +75,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a href="#"
+        <a href="{% url 'vendor_account' vendor.slug %}"
         {% if 'account' in request.path %}
           class="nav-link active"
         {% else %}
