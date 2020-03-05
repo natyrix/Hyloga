@@ -2,6 +2,8 @@ from django.contrib import messages, auth
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
+
+from Users.models import Users
 from accounts.models import AccountType, AcType
 from .models import Vendor, Pricing, VendorImage
 from .form import PricingForm, GalleryForm, LogoForm, AccountForm
@@ -32,8 +34,8 @@ def dashboard(request, slug_txt):
                         vendor = Vendor.objects.get(login_id=request.user)
                         return redirect('vendor_dashboard', vendor.slug)
                     elif acType.Actype == AcType[2][0]:  # Users
-                        messages.success(request, "Just Logged in " + acType.Actype)
-                        return render(request, 'accounts/login.html')
+                        users = Users.objects.get(login_id=request.user)
+                        return redirect('users_home', users.slug)
 
         else:
             return render(request, 'index.html')
@@ -64,8 +66,8 @@ def pricing(request, slug_txt):
                         vendor = Vendor.objects.get(login_id=request.user)
                         return redirect('vendor_dashboard', vendor.slug)
                     elif acType.Actype == AcType[2][0]:  # Users
-                        messages.success(request, "Just Logged in " + acType.Actype)
-                        return render(request, 'accounts/login.html')
+                        users = Users.objects.get(login_id=request.user)
+                        return redirect('users_home', users.slug)
 
         else:
             return render(request, 'index.html')

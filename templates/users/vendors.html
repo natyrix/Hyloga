@@ -1,0 +1,62 @@
+{% load static %}
+{% if 'vendors' %}
+  <div class="row">
+  {% for vendor in vendors %}
+    <div class="card mb-4 mr-4" style="width: 18rem;">
+      <img src="{{ vendor.logo.url }}" class="card-img-top fit-image" alt="...">
+      <div class="card-body">
+        <h4 class="text-primary">{{ vendor.name }}</h4>
+        </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><i class="fas fa-th-large"></i> Category: {{ vendor.category }}</li>
+        <li class="list-group-item"><i class="fas fa-phone"></i> Phone Number: {{ vendor.phonenumber }}</li>
+        <li class="list-group-item"><i class="fas fa-map-marker-alt"></i> Address: {{ vendor.address }}</li>
+      </ul>
+      <div class="card-body">
+       <a href="{% url 'users_vendor' vendor.id %}" class="btn btn-primary btn-block">More Info</a>
+      </div>
+    </div>
+  {% endfor %}
+  </div>
+{% else %}
+  <h4>No vendors currently available</h4>
+{% endif %}
+
+
+<div class="row">
+  <div class="col-md-12">
+    {% if vendors.has_other_pages %}
+      <ul class="pagination">
+        {% if vendors.has_previous %}
+          <li class="page-item">
+            <a href="?page={{vendors.previous_page_number}}" class="page-link">&laquo;</a>
+          </li>
+        {% else %}
+          <li class="page-item disabled">
+            <a class="page-link">&laquo;</a>
+          </li>
+        {% endif %}
+        {% for i in vendors.paginator.page_range %}
+          {% if vendors.number == i %}
+            <li class="page-item active">
+              <a class="page-link">{{i}}</a>
+            </li>
+          {% else %}
+            <li class="page-item">
+              <a href="?page={{i}}" class="page-link">{{i}}</a>
+            </li>
+          {% endif %}
+        {% endfor %}
+        {% if vendors.has_next %}
+          <li class="page-item">
+            <a href="?page={{vendors.next_page_number}}" class="page-link">&raquo;</a>
+          </li>
+        {% else %}
+          <li class="page-item disabled">
+            <a class="page-link">&raquo;</a>
+          </li>
+        {% endif %}
+      </ul>
+    {% endif %}
+  </div>
+</div>

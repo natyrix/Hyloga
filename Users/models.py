@@ -2,21 +2,23 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 from datetime import datetime
+from django.db.models.signals import pre_save
 
 
 class Users(models.Model):
     Role = (
-      ('Bride',  'bride'),
-      ('Groom',  'groom')
+      ('Bride',  'Bride'),
+      ('Groom',  'Groom')
     )
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
-    email = models.CharField(max_length=30)
+    slug = models.SlugField(max_length=30, null=True, blank=True)
+    email = models.EmailField(max_length=30)
     role = models.CharField(choices=Role, max_length=30)
     wedding_date = models.DateField(default=timezone.now)
     fiance_first_name = models.CharField(max_length=30)
     fiance_last_name = models.CharField(max_length=30)
-    fiance_email = models.CharField(max_length=30)
+    fiance_email = models.EmailField(max_length=30)
     login_id = models.OneToOneField(User, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -82,3 +84,11 @@ class Budget(models.Model):
     def __str__(self):
         return self.user.first_name + " & " + self.user.fiance_first_name
 
+
+def slug_generator(sender, instance, *args, **kwargs):
+    uname = instance.email.split('@')
+    uname2 = instance.fiance_email.split('@')
+    instance.slug = str(uname[0] + uname2[0]).strip()
+
+
+pre_save.connect(slug_generator, sender=Users)

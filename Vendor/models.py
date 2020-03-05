@@ -49,6 +49,10 @@ class Pricing(models.Model):
     vendor = models.ForeignKey(Vendor, on_delete=models.CASCADE)
 
 
+class Logos(models.Model):
+    logo = models.ImageField(upload_to='vendor_images/', default='vendor_images/default-logo.png')
+
+
 def slug_generator(sender, instance, *args, **kwargs):
     uname = instance.email.split('@')
     instance.slug = str(uname[0]).strip()

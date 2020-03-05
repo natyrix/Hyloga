@@ -1,0 +1,190 @@
+{% load static %}
+<div class="row mb-3">
+  <div class="col-sm-7 col-md-3">
+    <h3>Name: {{ vendor.name }}</h3>
+    <img src="{{ vendor.logo.url }}" alt="" class="img-fluid">
+    {% if 'vendor_images' %}
+    {% for image in vendor_images %}
+      <div class="col-md-4">
+        <a href="{{ image.image_location.url }}" data-lightbox="home-images">
+          <img src="{{ image.image_location.url }}" alt="" class="img-fluid">
+        </a>
+      </div>
+    {% endfor %}
+  {% endif %}
+  </div>
+  <div class="col-sm-7 col-md-3">
+    <br/>
+    <br/>
+    <h6><i class="fas fa-phone"></i> Phone Number: {{ vendor.phonenumber }}</h6>
+    <h6><i class="fas fa-envelope"></i> Email: {{ vendor.email }}</h6>
+    <h6><i class="fas fa-map-marker-alt"></i> Address: {{ vendor.address }}</h6>
+    <h6><i class="fas fa-th-large"></i> Category: {{ vendor.category }}</h6>
+  </div>
+  {% if vendor_ratings %}
+    <div class="col-sm-7 col-md-3">
+      <br/>
+      <h4>User Ratings:</h4>
+      <span
+        {% if r_avg >= 1 %}
+          class="fa fa-star checked"
+        {% else %}
+          class="fa fa-star"
+        {% endif %}
+      ></span>
+      <span
+        {% if r_avg >= 2 %}
+          class="fa fa-star checked"
+        {% else %}
+          class="fa fa-star"
+        {% endif %}
+      ></span>
+      <span
+        {% if r_avg >= 3 %}
+          class="fa fa-star checked"
+        {% else %}
+          class="fa fa-star"
+        {% endif %}
+      ></span>
+      <span
+        {% if r_avg >= 4 %}
+          class="fa fa-star checked"
+        {% else %}
+          class="fa fa-star"
+        {% endif %}
+      ></span>
+      <span
+        {% if r_avg >= 5 %}
+          class="fa fa-star checked"
+        {% else %}
+          class="fa fa-star"
+        {% endif %}
+      ></span>
+      <p>{{ r_avg }} average based on {{ r_count }} reviews.</p>
+      <hr style="border:3px solid #f1f1f1">
+          <div class="row">
+        <div class="side">
+          <div>5 star</div>
+        </div>
+        <div class="middle">
+          <div class="bar-container">
+            <div class="bar-5"
+                 {% if r5_p %}
+                  style="width: {{ r5_p }}%"
+                 {% else %}
+                  style="width: 0%"
+                 {% endif %}
+            ></div>
+          </div>
+        </div>
+        <div class="side right">
+          <div>
+            {% if r5_count %}
+              {{ r5_count }}
+            {% else %}
+              0
+            {% endif %}
+          </div>
+        </div>
+        <div class="side">
+          <div>4 star</div>
+        </div>
+        <div class="middle">
+          <div class="bar-container">
+            <div class="bar-4"
+              {% if r4_p %}
+                  style="width: {{ r4_p }}%"
+               {% else %}
+                  style="width: 0%"
+               {% endif %}
+            ></div>
+          </div>
+        </div>
+        <div class="side right">
+          <div>
+            {% if r4_count %}
+              {{ r4_count }}
+            {% else %}
+              0
+            {% endif %}
+          </div>
+        </div>
+        <div class="side">
+          <div>3 star</div>
+        </div>
+        <div class="middle">
+          <div class="bar-container">
+            <div class="bar-3"
+              {% if r3_p %}
+                  style="width: {{ r3_p }}%"
+               {% else %}
+                  style="width: 0%"
+               {% endif %}
+            ></div>
+          </div>
+        </div>
+        <div class="side right">
+          <div>
+            {% if r3_count %}
+              {{ r3_count }}
+            {% else %}
+              0
+            {% endif %}
+          </div>
+        </div>
+        <div class="side">
+          <div>2 star</div>
+        </div>
+        <div class="middle">
+          <div class="bar-container">
+            <div class="bar-2"
+              {% if r2_p %}
+                  style="width: {{ r2_p }}%"
+               {% else %}
+                  style="width: 0%"
+               {% endif %}
+            ></div>
+          </div>
+        </div>
+        <div class="side right">
+          <div>
+            {% if r2_count %}
+              {{ r2_count }}
+            {% else %}
+              0
+            {% endif %}
+          </div>
+        </div>
+        <div class="side">
+          <div>1 star</div>
+        </div>
+        <div class="middle">
+          <div class="bar-container">
+            <div class="bar-1"
+              {% if r1_p %}
+                  style="width: {{ r1_p }}%"
+               {% else %}
+                  style="width: 0%"
+               {% endif %}
+            ></div>
+          </div>
+        </div>
+        <div class="side right">
+          <div>
+            {% if r1_count %}
+              {{ r1_count }}
+            {% else %}
+              0
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+</div>
+<div class="row col-md-7">
+
+</div>
+<div class="row">
+
+</div>

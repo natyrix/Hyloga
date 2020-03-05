@@ -2,8 +2,9 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from Vendor.models import Category, Vendor, st
 from django.contrib import messages, auth
-from Users.forms import UsersForm
+from .forms import UsersForm
 from .models import AccountType, AcType
+from Users.models import Users
 
 
 def validator(var):
@@ -15,7 +16,61 @@ def validator(var):
 
 def registerCouple(request):
     if request.method == 'POST':
-        return
+        couple_form = UsersForm(request.POST)
+        if couple_form.is_valid():
+            password = str(request.POST['password']).strip()
+            password2 = str(request.POST['password2']).strip()
+            if password == password2:
+                email = couple_form.cleaned_data['email']
+                if User.objects.filter(email=email).exists():
+                    context = {
+                        'form': couple_form
+                    }
+                    messages.error(request, "Email already taken")
+                    return render(request, 'accounts/register_couple.html', context)
+                else:
+                    uname = email.split('@')
+                    if User.objects.filter(username=uname[0]):
+                        context = {
+                            'form': couple_form
+                        }
+                        messages.error(request, "Email already taken")
+                        return render(request, 'accounts/register_couple.html', context)
+                    else:
+                        first_name = couple_form.cleaned_data['first_name']
+                        last_name = couple_form.cleaned_data['last_name']
+                        role = couple_form.cleaned_data['role']
+                        wedding_date = request.POST['wed_date']
+                        fiance_first_name = couple_form.cleaned_data['fiance_first_name']
+                        fiance_last_name = couple_form.cleaned_data['fiance_last_name']
+                        fiance_email = couple_form.cleaned_data['fiance_email']
+                        user = User.objects.create_user(email=email, username=uname[0], password=password)
+                        user.save()
+                        ac = AccountType(Actype=AcType[2][0], user=user)
+                        ac.save()
+                        users = Users(first_name=first_name, last_name=last_name,
+                                      email=email, role=role,
+                                      wedding_date=wedding_date,
+                                      fiance_first_name=fiance_first_name,
+                                      fiance_last_name=fiance_last_name,
+                                      fiance_email=fiance_email, login_id=user
+                                      )
+                        users.save()
+                        messages.success(request, "Registered successfully you can now login.")
+                        return render(request, 'accounts/login.html')
+            else:
+                context = {
+                    'form': couple_form
+                }
+                messages.error(request, "Password do not match")
+                return render(request, 'accounts/register_couple.html', context)
+        else:
+            context = {
+                'form': UsersForm
+            }
+            messages.error(request, "Registering Failed")
+            return render(request, 'accounts/register_couple.html', context)
+
     else:
         if request.user.is_authenticated:
             acType = AccountType.objects.get(user=request.user)
@@ -24,8 +79,8 @@ def registerCouple(request):
                     vendor = Vendor.objects.get(login_id=request.user)
                     return redirect('vendor_dashboard', vendor.slug)
                 elif acType.Actype == AcType[2][0]:  # Users
-                    messages.success(request, "Just Logged in " + acType.Actype)
-                    return render(request, 'accounts/login.html')
+                    users = Users.objects.get(login_id=request.user)
+                    return redirect('users_home', users.slug)
         context = {
             'form': UsersForm
         }
@@ -77,8 +132,8 @@ def registerVendor(request):
                     vendor = Vendor.objects.get(login_id=request.user)
                     return redirect('vendor_dashboard', vendor.slug)
                 elif acType.Actype == AcType[2][0]:  # Users
-                    messages.success(request, "Just Logged in " + acType.Actype)
-                    return render(request, 'accounts/login.html')
+                    users = Users.objects.get(login_id=request.user)
+                    return redirect('users_home', users.slug)
         categories = Category.objects.all()
         context = {
             'categories': categories,
@@ -102,8 +157,9 @@ def login(request):
                         messages.success(request, "Successfully logged in")
                         return redirect('vendor_dashboard', vendor.slug)
                     elif acType.Actype == AcType[2][0]:#Users
-                        messages.success(request, "Just Logged in " + acType.Actype)
-                        return redirect('login')
+                        users = Users.objects.get(login_id=user)
+                        messages.success(request, "Successfully logged in")
+                        return redirect('users_home', users.slug)
                     elif acType.Actype == AcType[0][0]:#Admin
                         messages.success(request, "Just Logged in " + acType.Actype)
                         return redirect('login')
@@ -124,8 +180,8 @@ def login(request):
                     vendor = Vendor.objects.get(login_id=request.user)
                     return redirect('vendor_dashboard', vendor.slug)
                 elif acType.Actype == AcType[2][0]:  # Users
-                    messages.success(request, "Just Logged in " + acType.Actype)
-                    return render(request, 'accounts/login.html')
+                    users = Users.objects.get(login_id=request.user)
+                    return redirect('users_home', users.slug)
         return render(request, 'accounts/login.html')
 
 

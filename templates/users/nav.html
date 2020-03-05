@@ -1,0 +1,50 @@
+{% load static %}
+<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="{% url 'users_home' users.slug %}">
+    {{ users.first_name }} & {{ users.fiance_first_name }}
+  </a>
+  <input type="hidden" value="{{ users.wedding_date }}" id="wedding_date">
+  <h4 style="color: wheat">Wedding Date: {{ users.wedding_date }}</h4>
+  <h6 style="color: white" id="countdown"></h6>
+  <ul class="navbar-nav px-3">
+    <li class="nav-item text-nowrap">
+      <a class="nav-link" href="javascript:{document.getElementById('logout').submit()}">
+        <i class="fa fa-sign-out-alt"></i>
+        Sign out</a>
+      <form action="{% url 'logout' %}" method="post" id="logout">
+        {% csrf_token %}
+        <input type="hidden">
+      </form>
+    </li>
+  </ul>
+</nav>
+
+<script>
+  var wed_date = document.getElementById('wedding_date');
+  var endDate = new Date(wed_date.value)
+  var _second = 1000;
+  var _minute = _second * 60;
+  var _hour = _minute * 60;
+  var _day = _hour * 24;
+  var timer;
+  function remainingDate(){
+    var now = new Date();
+    var distance = endDate-now
+    if (distance < 0) {
+      clearInterval(timer);
+      document.getElementById('countdown').innerHTML = 'Your wedding date has been passed';
+      return;
+    }
+    var days = Math.floor(distance / _day);
+    var hours = Math.floor((distance % _day) / _hour);
+    var minutes = Math.floor((distance % _hour) / _minute);
+    var seconds = Math.floor((distance % _minute) / _second);
+
+    document.getElementById('countdown').innerHTML = days + ' days ';
+    document.getElementById('countdown').innerHTML += hours + ' hrs ';
+    document.getElementById('countdown').innerHTML += minutes + ' mins ';
+    document.getElementById('countdown').innerHTML += seconds + ' secs';
+
+  }
+  timer = setInterval(remainingDate, 1000);
+</script>

@@ -1,0 +1,103 @@
+{% load static %}
+<nav class="col-md-2 d-none d-md-block bg-light sidebar">
+  <div class="sidebar-sticky">
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <a href="#"
+        {% if 'dashboard' in request.path %}
+          class="nav-link active"
+        {% else %}
+          class="nav-link"
+        {% endif %}
+        >
+          <i class="fas fa-home"></i>
+          Home
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="{% url 'users_vendors' users.slug %}"
+           {% if 'vendor' in request.path %}
+              class="nav-link active"
+           {% else %}
+              class="nav-link"
+          {% endif %}
+           >
+          <i class="fas fa-calendar-check"></i>
+          Vendors
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="#"
+        {% if 'bookings' in request.path %}
+          class="nav-link active"
+        {% else %}
+          class="nav-link"
+        {% endif %}
+        >
+          <i class="fas fa-calendar-check"></i>
+          Bookings
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="#"
+        {% if 'pricing' in request.path %}
+          class="nav-link active"
+        {% else %}
+          class="nav-link"
+        {% endif %}
+        >
+          <i class="fas fa-money-check"></i>
+          Pricing
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="#"
+        {% if 'rateandreview' in request.path %}
+          class="nav-link active"
+        {% else %}
+          class="nav-link"
+        {% endif %}
+        >
+           <i class="fas fa-star"></i>
+          Ratings and Reviews
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="#"
+        {% if 'gallery' in request.path %}
+          class="nav-link active"
+        {% else %}
+          class="nav-link"
+        {% endif %}
+        >
+          <i class="fas fa-images"></i>
+          Gallery
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="#"
+        {% if 'account' in request.path %}
+          class="nav-link active"
+        {% else %}
+          class="nav-link"
+        {% endif %}
+        >
+          <i class="fas fa-user-circle"></i>
+          Account
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="#"
+        {% if 'notification' in request.path %}
+          class="nav-link active"
+        {% else %}
+          class="nav-link"
+        {% endif %}
+        >
+          <i class="fas fa-bell"></i>
+          Notification
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>

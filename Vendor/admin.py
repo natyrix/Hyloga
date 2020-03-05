@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Vendor, VendorImage, Category, Pricing
+from .models import Vendor, VendorImage, Category, Pricing, Logos
 
 
 class VendorAdmin(admin.ModelAdmin):
@@ -22,3 +22,4 @@ admin.site.register(Vendor, VendorAdmin)
 admin.site.register(VendorImage)
 admin.site.register(Category)
 admin.site.register(Pricing, PricingAdmin)
+admin.site.register(Logos)
