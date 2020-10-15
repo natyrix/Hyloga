@@ -1,0 +1,245 @@
+{% load static %}
+{% load humanize %}
+<div class="row">
+  <div class="card col-8">
+    <div class="card-header bg-dark text-white">
+      <h5>
+        Create new budget plan</h5>
+    </div>
+    <div class="card-body">
+      <form action="{% url 'users_budget' users.slug %}" method="post">
+        {% csrf_token %}
+        <div class="row">
+          <div class="col">
+            <label>Amount:</label>
+            {{ budget_form.amount }}
+          </div>
+          <div class="col">
+            <label>Available Vendor Categories:</label>
+            {{ budget_form.vendor_categories }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <label>Sort:</label>
+            {{ budget_form.sort }}
+          </div>
+          <div class="col">
+              <hr>
+              <input type="submit" value="Generate Budget Plan" class="btn btn-primary">
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="col-4">
+    <a href="{% url 'users_all_budgets' users.slug %}" class="btn btn-warning" style="float: right">Load budget plans</a>
+  </div>
+</div>
+<hr>
+<div class="row">
+{% if price_lists %}
+    <div class="card col col-8">
+      <br>
+      <h6>Amount: <strong>{{ amount | intcomma }} Birr </strong></h6>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Vendor Name</th>
+            <th scope="col">Vendor Category</th>
+            <th scope="col">Price Title</th>
+            <th scope="col">Price Amount</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for price_list in price_lists %}
+            <tr>
+              <th scope="row" class="bg-light text-dark">#{{ forloop.counter }}</th>
+              {% for price in price_list %}
+                <tr>
+                  <p id="p_id_{{forloop.parentloop.counter}}{{forloop.counter}}" style="display: none">{{price.id}}</p>
+                  <p id="p_detail_{{forloop.parentloop.counter}}{{forloop.counter}}" style="display: none">{{ price.detail }}</p>
+                  <p id="p_val_{{forloop.parentloop.counter}}{{forloop.counter}}" style="display: none">{{ price.value }}</p>
+                  <td id="v_name_{{forloop.parentloop.counter}}{{forloop.counter}}">{{ price.vendor.name }}</td>
+                  <td id="v_cat_{{forloop.parentloop.counter}}{{forloop.counter}}">{{ price.vendor.category }}</td>
+                  <td id="p_title_{{forloop.parentloop.counter}}{{forloop.counter}}">{{ price.title }}</td>
+                  <td id="p_value_{{forloop.parentloop.counter}}{{forloop.counter}}">{{ price.value | intcomma }} Birr</td>
+                  <td>
+                    <a class="btn-secondary tltip btn">
+                      View Detail <span class="tltiptext">{{ price.detail }}</span></a>
+                  </td>
+                </tr>
+              {% endfor %}
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+              <a href="javascript:save_plan({{forloop.counter}}{{ price_list|length }})" class="btn-primary btn">Save this plan</a>
+            </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+{% endif %}
+</div>
+<div class="modal fade" id="budgetDetailModal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="budgetDetailModalLabel">Detail about this price</h5>
+          <button type="button" class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <table class="table">
+            <tr>
+              <th>Vendor Name: </th>
+              <td id="d_v_name"></td>
+            </tr>
+            <tr>
+              <th>Vendor Category: </th>
+              <td id="d_v_cat"></td>
+            </tr>
+            <tr>
+              <th>Price Title: </th>
+              <td id="d_p_title"></td>
+            </tr>
+            <tr>
+              <th>Price Detail: </th>
+              <td id="d_p_detail"></td>
+            </tr>
+            <tr>
+              <th>Price Amount: </th>
+              <td id="d_p_value"></td>
+            </tr>
+          </table>
+        </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="budgetSaveModal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="budgetSaveModalLabel"></h5>
+          <button type="button" class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <table class="table" id="save_table">
+            <tr>
+              <th scope="col">Vendor Name</th>
+              <th scope="col">Vendor Category</th>
+              <th scope="col">Price Title</th>
+              <th scope="col">Price Amount</th>
+              <th scope="col"></th>
+            </tr>
+          </table>
+        </div>
+    </div>
+  </div>
+</div>
+
+<input id="hd_in" style="display: none" type="number" value="{{ amount }}">
+<script>
+  function v_d(val){
+    alert(document.getElementById('p_detail_'+val).innerText);
+  }
+  function view_detail(val, yy = 0){
+    const modal_div = document.getElementById('budgetDetailModal')
+    modal_div.removeAttribute("style");
+    document.getElementById('d_v_name').innerText = document.getElementById('v_name_'+val).innerText
+    document.getElementById('d_v_cat').innerText =  document.getElementById('v_cat_'+val).innerText
+    document.getElementById('d_p_title').innerText = document.getElementById('p_title_'+val).innerText
+    document.getElementById('d_p_detail').innerText = document.getElementById('p_detail_'+val).innerText
+    document.getElementById('d_p_value').innerText = document.getElementById('p_value_'+val).innerText
+    if(yy!=0){
+      modal_div.style.position = 'absolute'
+      modal_div.style.left = '400px'
+      modal_div.style.top = '0px'
+    }
+    $('#budgetDetailModal').modal('toggle')
+  }
+  function save_plan(val){
+    const plan_table = document.getElementById('save_table')
+    const x = parseInt(val/10)
+    const y = val%10
+    let total_price = 0
+    if(plan_table.rows.length > 1){
+      for(let i = y; i>=1;i--){
+        plan_table.deleteRow(i)
+      }
+    }
+    for(let i = 1; i<=y;i++){
+      let row = plan_table.insertRow(i)
+      let name_cell = row.insertCell(0)
+      let cat_cell = row.insertCell(1)
+      let title_cell = row.insertCell(2)
+      let price_cell = row.insertCell(3)
+      let view_detail_cell = row.insertCell(4)
+      name_cell.innerHTML = document.getElementById('v_name_'+x+i).innerText
+      cat_cell.innerHTML = document.getElementById('v_cat_'+x+i).innerText
+      title_cell.innerHTML = document.getElementById('p_title_'+x+i).innerText
+      price_cell.innerHTML = document.getElementById('p_value_'+x+i).innerText
+      const det = document.getElementById('p_detail_'+x+i).innerText
+      view_detail_cell.innerHTML = `<a
+                       class="btn-secondary tltip btn">
+                      Detail <span class='tltiptext'>${det}</span></a>`
+      total_price += parseInt(document.getElementById('p_val_'+x+i).innerText)
+    }
+    document.getElementById('budgetSaveModalLabel').innerHTML = `Save this plan for a total price of: ${total_price} Birr.`
+    document.getElementById('budgetSaveModalLabel').innerHTML += `
+        <div>
+        <form method='post' id='save_budget_form' onsubmit="return save_budget(${val})">
+          {% csrf_token %}
+          <input type="text" name="budget_prices" id="budget_prices" style="display: none">
+          <input type="number" name="budget_amount" id="budget_amount" style="display: none">
+          <input type="submit" class="btn btn-primary" value="Save" />
+        </form>
+        <div id='err_div' class='text-center'></div>
+    </div>
+    `
+    $('#budgetSaveModal').modal('toggle')
+  }
+  function save_budget(val){
+    const err_div = document.getElementById('err_div')
+    err_div.innerHTML = `<img src="{% static 'img/Loading_icon.gif' %}"
+     alt="loading" id="loading_img" height=150px width=60px>`
+    const x = parseInt(val/10)
+    const y = val%10
+    const save_form = document.getElementById('save_budget_form')
+    let prices = ''
+    for(let i = 1; i<=y;i++){
+      prices += document.getElementById('p_id_'+x+i).innerText + ','
+    }
+    document.getElementById('budget_prices').value = prices
+    document.getElementById('budget_amount').value = document.getElementById('hd_in').value
+    let serialize_data = $('#save_budget_form').serialize()
+    $.ajax({
+      type: 'POST',
+      url: "{% url 'users_save_budget' users.slug %}",
+      data: serialize_data,
+      success: function (response){
+        const sucMsg = response["message"]
+        err_div.innerHTML = `
+          <p id="save_err" class="text-success">${sucMsg}</p>
+        `
+        setTimeout(function () {
+           $('#budgetSaveModal').modal('toggle')
+        }, 2000)
+      },
+      error: function (response){
+        const errMsg = response["responseJSON"]["error"]
+        err_div.innerHTML = `
+          <p id="save_err" class="text-danger">${errMsg}</p>
+        `
+      }
+    })
+    return false
+  }
+</script>

@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% load static %}
+<div class="row">
+    {% for image in vendor_images %}
+      <div class="col-md-3">
+        <a href="{{ image.image_location.url }}" data-lightbox="home-images">
+          <img src="{{ image.image_location.url }}" alt="" class="img-fluid">
+        </a>
+      </div>
+    {% endfor %}
+</div>

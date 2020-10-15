@@ -1,0 +1,19 @@
+{% load static %}
+{% for r in review %}
+  <div class="card mb-3"  style="max-width: 80rem;">
+    <div class="card-body">
+      <p class="card-text">{{ r.review }}</p>
+      <h5 class="card-text bg-light text-info">
+        {% if r.user.login_id == request.user %}
+          Reviewed by you.
+        {% else %}
+          {% if r.guest %}
+            Reviewed by: {{r.guest}} (Guest).
+          {% else %}
+            Reviewed by: {{ r.user.first_name }} & {{ r.user.fiance_first_name }}.
+          {% endif %}
+        {% endif %}
+      </h5>
+    </div>
+  </div>
+{% endfor %}

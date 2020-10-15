@@ -27,43 +27,107 @@
         </a>
       </li>
       <li class="nav-item">
+        <a href="{% url 'users_chats' users.slug %}"
+        {% if 'chat' in request.path %}
+          class="nav-link active"
+        {% else %}
+          class="nav-link"
+        {% endif %}
+        >
+          <i
+             {% if chat_count %}
+            class="fas fa-envelope text-danger"
+          {% else %}
+            class="fas fa-envelope"
+          {% endif %}
+          >
+          </i>
+          <span
+          {% if chat_count %}
+            class="text-danger"
+          {% endif %}
+          >Chats
+          {% if chat_count %}
+              <sup class="text-danger">{{ chat_count }}</sup>
+          {% endif %}
+          </span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="{% url 'users_check_list' users.slug %}"
+        {% if 'check_list' in request.path %}
+          class="nav-link active"
+        {% else %}
+          class="nav-link"
+        {% endif %}
+        >
+          <i class="fas fa-th-list"></i>
+          Check List
+        </a>
+      </li>
+      <li class="nav-item">
         <a href="#"
+        {% if 'wish_list' in request.path %}
+          class="nav-link active"
+        {% else %}
+          class="nav-link"
+        {% endif %}
+        >
+          <i class="fas fa-th-list"></i>
+          Wish List
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="{% url 'users_appointments' users.slug %}"
+        {% if 'appointments' in request.path %}
+          class="nav-link active"
+        {% else %}
+          class="nav-link"
+        {% endif %}
+        >
+        <i class="fas fa-calendar-alt"></i>
+        Appointments
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="{% url 'users_bookings'  users.slug%}"
         {% if 'bookings' in request.path %}
           class="nav-link active"
         {% else %}
           class="nav-link"
         {% endif %}
         >
-          <i class="fas fa-calendar-check"></i>
+          <i class="fas fa-calendar-alt"></i>
           Bookings
         </a>
       </li>
       <li class="nav-item">
-        <a href="#"
-        {% if 'pricing' in request.path %}
+        <a href="{% url 'users_budget' users.slug %}"
+        {% if 'budget' in request.path %}
           class="nav-link active"
         {% else %}
           class="nav-link"
         {% endif %}
         >
-          <i class="fas fa-money-check"></i>
-          Pricing
+           <i class="fas fa-money-bill-alt"></i>
+          Budget
         </a>
       </li>
       <li class="nav-item">
-        <a href="#"
-        {% if 'rateandreview' in request.path %}
+        <a href="{% url 'users_all_budgets' users.slug %}"
+        {% if 'all_b' in request.path %}
           class="nav-link active"
         {% else %}
           class="nav-link"
         {% endif %}
         >
-           <i class="fas fa-star"></i>
-          Ratings and Reviews
+           <i class="fas fa-money-bill-alt"></i>
+          Your Budget Plans
         </a>
       </li>
+
       <li class="nav-item">
-        <a href="#"
+        <a href="{% url 'users_gallery' users.slug%}"
         {% if 'gallery' in request.path %}
           class="nav-link active"
         {% else %}
@@ -75,7 +139,19 @@
         </a>
       </li>
       <li class="nav-item">
-        <a href="#"
+        <a href="{% url 'users_upload' users.slug%}"
+        {% if 'upload' in request.path %}
+          class="nav-link active"
+        {% else %}
+          class="nav-link"
+        {% endif %}
+        >
+          <i class="fas fa-upload"></i>
+          Upload files
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="{% url 'users_account' users.slug %}"
         {% if 'account' in request.path %}
           class="nav-link active"
         {% else %}
@@ -87,15 +163,29 @@
         </a>
       </li>
       <li class="nav-item">
-        <a href="#"
+        <a href="{% url 'users_notifications' users.slug%}"
         {% if 'notification' in request.path %}
           class="nav-link active"
         {% else %}
           class="nav-link"
         {% endif %}
         >
-          <i class="fas fa-bell"></i>
-          Notification
+          <i
+          {% if not_count %}
+            class="fas fa-bell text-danger"
+          {% else %}
+            class="fas fa-bell"
+          {% endif %}
+          ></i>
+          <span
+          {% if not_count %}
+            class="text-danger"
+          {% endif %}
+          >Notification
+          {% if not_count %}
+              <sup class="text-danger">{{ not_count }}</sup>
+          {% endif %}
+          </span>
         </a>
       </li>
     </ul>

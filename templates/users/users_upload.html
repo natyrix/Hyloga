@@ -1,10 +1,129 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% load static %}
+<div class="row">
+  <div class="col-sm-9 col-md-6">
+    <div class="card">
+      <div class="card-header bg-dark text-white">
+        <h5>
+          Add your Images</h5>
+      </div>
+      <div class="card-body">
+         <form id="img_form" action="{% url 'users_upload_image' users.slug %}" method="post" enctype="multipart/form-data">
+           {% csrf_token %}
+           <div class="row">
+             <div class="col" id="image_div">
+               <label>Image</label>
+              {{ image_form.image_location }}
+               <br>
+               <p class="text-danger" id="val_err"></p>
+             </div>
+           </div>
+           <br>
+           <input type="button" onclick="up_image();" value="Add Image" class="btn btn-primary">
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-9 col-md-6">
+    <div class="card">
+      <div class="card-header bg-dark text-white">
+        <h5>
+          Add your Video</h5>
+      </div>
+      <div class="card-body">
+         <form id="vid_form" action="{% url 'users_upload_video' users.slug %}" method="post" enctype="multipart/form-data">
+           {% csrf_token %}
+           <div class="row">
+             <div class="col">
+               <label>Video</label>
+              {{ video_form.video_location }}
+               <br>
+               <p id="vid_val_err" class="text-danger"></p>
+             </div>
+           </div>
+           <br>
+           <input type="button" onclick="up_video();" value="Add Video" class="btn btn-primary">
+        </form>
+      </div>
+    </div>
+    </div>
+</div>
+<br>
+
+<script>
+  function up_image(){
+    const file_input = document.getElementById('id_image_location')
+    const val_err_p = document.getElementById('val_err')
+    if(!file_input.files[0]){
+      val_err_p.innerHTML = "The image field is required"
+    }
+    else{
+      const _validFileExtensions = [".jpg", ".jpeg", ".bmp", ".gif", ".png", ".svg"];
+      let isValid = false;
+      file = file_input.files[0]
+      sFileName = file.name
+      for (let j = 0; j < _validFileExtensions.length; j++) {
+        let sCurExtension = _validFileExtensions[j];
+        if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
+            isValid = true;
+            break;
+        }
+      }
+      if(!isValid){
+        val_err_p.innerHTML = sFileName + " is not a valid file type, valid file types are: "
+        let valid_types = "";
+        for (let j = 0; j < _validFileExtensions.length; j++) {
+          valid_types += _validFileExtensions[j] + " ";
+        }
+        let t = document.createTextNode(valid_types);
+        val_err_p.appendChild(t)
+      }
+      else{
+        if(file.size > 10485760){
+          val_err_p.innerHTML = "Image size can not exceed 10MB"
+        }
+        else {
+          val_err_p.innerHTML = ""
+          document.getElementById('img_form').submit()
+        }
+      }
+    }
+  }
+  function up_video(){
+    const file_input = document.getElementById('id_video_location')
+    const val_err_p = document.getElementById('vid_val_err')
+    if(!file_input.files[0]){
+      val_err_p.innerHTML = "The video field is required"
+    }
+    else{
+      const _validFileExtensions = [".mp4", ".mkv", ".avi", ".mov", ".flv", ".MPEG"];
+      let isValid = false;
+      file = file_input.files[0]
+      sFileName = file.name
+      for (let j = 0; j < _validFileExtensions.length; j++) {
+        let sCurExtension = _validFileExtensions[j];
+        if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
+            isValid = true;
+            break;
+        }
+      }
+      if(!isValid){
+        val_err_p.innerHTML = sFileName + " is not a valid file type, valid file types are: "
+        let valid_types = "";
+        for (let j = 0; j < _validFileExtensions.length; j++) {
+          valid_types += _validFileExtensions[j] + " ";
+        }
+        let t = document.createTextNode(valid_types);
+        val_err_p.appendChild(t)
+      }
+      else{
+        if(file.size > 30485760){
+          val_err_p.innerHTML = "Video size can not exceed 10MB"
+        }
+        else {
+          val_err_p.innerHTML = ""
+          document.getElementById('vid_form').submit()
+        }
+      }
+    }
+  }
+</script>

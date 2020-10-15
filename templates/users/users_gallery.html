@@ -1,10 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% load static %}
+<div class="row">
+  {% if user_images %}
+    <div class="card">
+      <div class="card-header bg-dark text-white">
+        <h5>Your Images</h5>
+      </div>
+      <div class="card-body">
+          <div class="row">
+            {% for img in user_images %}
+              <div class="col-sm-7 col-md-2" >
+                <h5>#{{ forloop.counter }} </h5>
+                <a href="{{ img.image_location.url }}" data-lightbox="home-images">
+                  <img src=" {{ img.image_location.url }}" alt="" class="img-fluid img-thumbnail"
+                  style="width: 400px; height: 250px;"></a>
+                <a href="{% url 'users_delete_image' img.id %}" class="btn-danger btn">Remove</a>
+              </div>
+            {% endfor %}
+          </div>
+      </div>
+    </div>
+  {% else %}
+  <h5>You have no image</h5>
+  {% endif %}
+</div>
+<br>
+  {% if user_videos %}
+  <div class="row">
+    <div class="card">
+      <div class="card-header bg-dark text-white">
+        <h5>Your Videos:</h5>
+      </div>
+      <div class="card-body">
+        <div class="row">
+        {% for vid in user_videos %}
+            <div class="col-sm-7 col-md-4">
+              <h6>#{{ forloop.counter }} </h6>
+              <video controls width="400px" height="360px" poster="{% static 'img/vidcover.png' %}" preload="none">
+                <source src="{{vid.video_location.url}}">
+              </video>
+                <a href="{% url 'users_delete_vid' vid.id %}" class="btn-danger btn">Remove</a>
+            </div>
+        {% endfor %}
+      </div>
+      </div>
+    </div>
+  </div>
+  {% else %}
+    <h5>You have no video</h5>
+  {% endif %}
+
+

@@ -1,10 +1,586 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% load static %}
+{% load humanize %}
+<div class="">
+  <button class="btn-secondary btn" data-toggle="modal" data-target="#AddCheckListModal"><i class="fas fa-plus"></i> Add Check-List</button>
+  <hr>
+</div>
+<div class="row">
+  <div class="card">
+    <div class="card-header bg-light text-dark">
+      <h5>
+        Your current check-list</h5>
+      <div class="row">
+        <div class="col">
+          <i class="fas fa-circle text-success"></i> Checked
+          <i class="fas fa-circle text-danger"></i> Un-checked
+          <i class="fas fa-circle text-secondary"></i> Expired
+        </div>
+        <div class="col">
+          Filter:
+          <select name="_check_list_filter" id="_check_list_filter" class="form-control" onChange="filter_check_list()">
+            <option value="1" selected>All</option>
+            <option value="2">Checked</option>
+            <option value="3">Un-checked</option>
+            <option value="4">Expired</option>
+          </select>
+        </div>
+        <div>
+        Show Expired: <input type="checkbox" id="_toggle_expired" checked onClick="toggleExpired()">
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      {% if check_lists %}
+        <p style="display: none " id="dt_exception" class="text-danger"></p>
+        <table class="table" id="_check_list_table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Order Number</th>
+              <th scope="col">Content</th>
+              <th scope="col">Date and time</th>
+              <th scope="col">Status</th>
+              <th scope="col">Edit</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for check_list in check_lists %}
+              <p style="display: none" id="st_{{forloop.counter}}">{{check_list.status}}</p>
+              <p style="display: none" id="ch_id_{{forloop.counter}}">{{check_list.id}}</p>
+              <p style="display: none" id="ex_{{forloop.counter}}">{{check_list.is_passed}}</p>
+              <p style="display: none" id="dt_{{forloop.counter}}">{{check_list.date_and_time}}</p>
+              <tr id="tr_{{forloop.counter}}"
+              {% if check_list.status or check_list.is_passed %}
+                {% if check_list.is_passed %}
+                  class="text-secondary passed-border"
+                {% else %}
+                  class="text-success success-border"
+                {% endif %}
+              {% else %}
+                class="text-danger err-border"
+              {% endif %}
+              >
+                <th scope="row">{{ forloop.counter }}</th>
+                <td id="o_no_{{forloop.counter}}">{{ check_list.order_number }}</td>
+                <td id="cont_{{forloop.counter}}">{{ check_list.content }}</td>
+                <td id="dtt_{{forloop.counter}}">{{ check_list.date_and_time | naturaltime }}</td>
+                <td class="text-center">
+                  <i class="fas fa-calendar-check"></i>
+                </td>
+                <td>
+                  {% if not check_list.is_passed %}
+                    <a href="javascript:edit({{forloop.counter}})" class="btn-secondary btn" ><i class="fas fa-edit"></i></a>
+                  {% endif %}
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        <div class="row">
+          <div class="col-md-12">
+            {% if check_lists.has_other_pages %}
+              <ul class="pagination">
+                {% if check_lists.has_previous %}
+                  <li class="page-item">
+                    <a href="?page={{check_lists.previous_page_number}}" class="page-link">&laquo;</a>
+                  </li>
+                {% else %}
+                  <li class="page-item disabled">
+                    <a class="page-link">&laquo;</a>
+                  </li>
+                {% endif %}
+                {% for i in check_lists.paginator.page_range %}
+                  {% if check_lists.number == i %}
+                    <li class="page-item active">
+                      <a class="page-link">{{i}}</a>
+                    </li>
+                  {% else %}
+                    <li class="page-item">
+                      <a href="?page={{i}}" class="page-link">{{i}}</a>
+                    </li>
+                  {% endif %}
+                {% endfor %}
+                {% if check_lists.has_next %}
+                  <li class="page-item">
+                    <a href="?page={{check_lists.next_page_number}}" class="page-link">&raquo;</a>
+                  </li>
+                {% else %}
+                  <li class="page-item disabled">
+                    <a class="page-link">&raquo;</a>
+                  </li>
+                {% endif %}
+              </ul>
+            {% endif %}
+          </div>
+        </div>
+      {% else %}
+        <h5>No check-list available</h5>
+      {% endif %}
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="checkListModal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="checkListModalLabel"><i class="fas fa-calendar-check"></i> Edit your Check-list</h5>
+          <button type="button" class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="{% url 'edit_users_check_list' users.slug %}" method="post" id="ed_check_list_form" name="ed_list_form" onsubmit="return validateEditCheckList()">
+            {% csrf_token %}
+            <input type="text" id="ch_id" name="ch_id" class="form-control" required style="display: none">
+            <label>Order number: <sup class="text-danger">*</sup></label>
+            <input type="number" name="ed_order_number" class="form-control" required id="ed_order_number">
+             <p id="ederrElement"></p>
+             <label>Content: <sup class="text-danger">*</sup></label>
+            <textarea name="ed_content" cols="35" rows="8" class="form-control" required id="ed_content"></textarea>
+             <label>Status: <sup class="text-danger">*</sup></label>
+             <input type="checkbox" id="edstatus" class="form-control" name="edstatus">
+             <label>Date and Time: <sup class="text-danger">*</sup></label>
+             <input type="datetime-local" id="eddatetime" class="form-control" name="eddatetime" required>
+             <p id="ederrElement1"></p>
+            <input type="submit" value="Save" class="btn btn-success">
+            <a href="#" class="btn btn-secondary" style="float: right;" data-dismiss="modal">
+            Cancel
+            </a>
+          </form>
+        </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="AddCheckListModal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="AddCheckListModalLabel"><i class="fas fa-envelope"></i> Add Check-List</h5>
+          <button type="button" class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="{% url 'users_check_list' users.slug %}" method="post" name="_list_form" onsubmit="return validateCheckList()">
+             {% csrf_token %}
+             <div class="col">
+               <div class="row" id="order_number_div">
+                 <label>Order number: <sup class="text-danger">*</sup></label>
+                {{ check_list_form.order_number }}
+                 <p id="errElement"></p>
+               </div>
+               <div class="row">
+                 <label>Content: <sup class="text-danger">*</sup></label>
+                {{ check_list_form.content }}
+               </div>
+               <div class="row" id="check_list_date_div">
+                 <label>Date and Time: <sup class="text-danger">*</sup></label>
+                 <input type="datetime-local" id="datetimep" class="form-control" name="_list_date_time" required>
+                 <p id="errElement1"></p>
+               </div>
+             </div>
+             <br>
+             <input type="submit" value="Add" class="btn btn-primary btn-block">
+          </form>
+        </div>
+    </div>
+  </div>
+</div>
+<script>
+  function validateCheckList() {
+    const errElement_p = document.getElementById('errElement');
+    errElement_p.innerHTML = ""
+    const errElement1_p = document.getElementById('errElement1');
+    errElement1_p.innerHTML = ""
+    let errBool = true;
+    document.getElementById('id_order_number').classList.remove('err-border')
+    document.getElementById('datetimep').classList.remove('err-border')
+    const order_number_val = document.forms['_list_form']['order_number'].value;
+    const check_list_date_time = document.forms['_list_form']['_list_date_time'].value;
+    if(order_number_val<1 || order_number_val>50){
+      errElement_p.className = 'text-danger'
+      errElement_p.innerHTML = "Invalid order number, order number must be in between 1 and 50"
+      document.getElementById('id_order_number').classList.add('err-border')
+      errBool = false
+    }
+    if(check_list_date_time == ''){
+      errElement1_p.className = 'text-danger'
+      errElement1_p.innerHTML = "Date and time is required"
+      document.getElementById('datetimep').classList.add('err-border')
+      errBool = false
+    }
+    else{
+      c_d = check_list_date_time.split('T')
+      c_full_date = c_d[0].split('-')
+      c_time = c_d[1].split(':')
+      let year = c_full_date[0]
+      if(year.length != 4){
+        errElement1_p.className = 'text-danger'
+        errElement1_p.innerHTML = "Invalid Year Input"
+        document.getElementById('datetimep').classList.add('err-border')
+        errBool = false
+      }
+    }
+    if(errBool){
+      switch(checkDate(check_list_date_time)){
+        case 1:
+          errElement1_p.className = 'text-danger'
+          errElement1_p.innerHTML = "Date can not be set to a past date"
+          document.getElementById('datetimep').classList.add('err-border')
+          errBool = false
+          break;
+        case 2:
+          errElement1_p.className = 'text-danger'
+          errElement1_p.innerHTML = "Date passes your wedding date"
+          document.getElementById('datetimep').classList.add('err-border')
+          errBool = false
+          break;
+        case 3:
+          errElement1_p.className = 'text-danger'
+          errElement1_p.innerHTML = "Date can not have the same day as your wedding date"
+          document.getElementById('datetimep').classList.add('err-border')
+          errBool = false
+          break;
+        default:
+          errBool = true
+      }
+    }
+    return errBool;
+  }
+  function validateEditCheckList(){
+    const errElement_p = document.getElementById('ederrElement');
+    errElement_p.innerHTML = ""
+    const errElement1_p = document.getElementById('ederrElement1');
+    errElement1_p.innerHTML = ""
+    let errBool = true;
+    document.getElementById('ed_order_number').classList.remove('err-border')
+    document.getElementById('eddatetime').classList.remove('err-border')
+    const order_number_val = document.forms['ed_list_form']['ed_order_number'].value;
+    const check_list_date_time = document.forms['ed_list_form']['eddatetime'].value;
+    if(order_number_val<1 || order_number_val>50){
+      errElement_p.className = 'text-danger'
+      errElement_p.innerHTML = "Invalid order number, order number must be in between 1 and 50"
+      document.getElementById('ed_order_number').classList.add('err-border')
+      errBool = false
+    }
+    if(check_list_date_time == ''){
+      errElement1_p.className = 'text-danger'
+      errElement1_p.innerHTML = "Date and time is required"
+      document.getElementById('eddatetime').classList.add('err-border')
+      errBool = false
+    }
+    else{
+      c_d = check_list_date_time.split('T')
+      c_full_date = c_d[0].split('-')
+      c_time = c_d[1].split(':')
+      let year = c_full_date[0]
+      if(year.length != 4){
+        errElement1_p.className = 'text-danger'
+        errElement1_p.innerHTML = "Invalid Year Input"
+        document.getElementById('eddatetime').classList.add('err-border')
+        errBool = false
+      }
+    }
+    if(errBool){
+      switch(checkDate(check_list_date_time)){
+        case 1:
+          errElement1_p.className = 'text-danger'
+          errElement1_p.innerHTML = "Date can not be set to a past date"
+          document.getElementById('eddatetime').classList.add('err-border')
+          errBool = false
+          break;
+        case 2:
+          errElement1_p.className = 'text-danger'
+          errElement1_p.innerHTML = "Date passes your wedding date"
+          document.getElementById('eddatetime').classList.add('err-border')
+          errBool = false
+          break;
+        case 3:
+          errElement1_p.className = 'text-danger'
+          errElement1_p.innerHTML = "Date can not have the same day as your wedding date"
+          document.getElementById('eddatetime').classList.add('err-border')
+          errBool = false
+          break;
+        default:
+          errBool = true
+      }
+    }
+    return errBool;
+  }
+  function checkDate(c_date){
+    const date = new Date()
+    const wed_date = document.getElementById('wedding_date');
+    const endDate = new Date(wed_date.value)
+    c_d = c_date.split('T')
+    c_full_date = c_d[0].split('-')
+    c_time = c_d[1].split(':')
+    if(calcDate(c_full_date,date)){
+      if(calcDate(c_full_date,endDate)){
+        return 2;
+      }
+      if(c_full_date[2] == endDate.getDate()){
+        return 3;
+      }
+      return 0;
+    }
+    else{
+      return 1;
+    }
+  }
+  function calcDate(date1, date2){
+    if(date1[0]>=date2.getFullYear()){
+      if(date1[0] == date2.getFullYear()){
+        if(date1[1] >= (date2.getMonth()+1)){
+          if(date1[1] == (date2.getMonth()+1)){
+            if(date1[2] > date2.getDate()){
+              return true
+            }
+            else{
+              return false
+            }
+          }
+          else{
+            return true
+          }
+        }
+        else{
+          return false
+        }
+      }
+      else{
+        return true
+      }
+    }
+    else{
+      return false
+    }
+  }
+  function toggleExpired(){
+    const selected_val = document.getElementById('_check_list_filter').value;
+    const exp_check = document.getElementById('_toggle_expired')
+    const tl = document.getElementById("_check_list_table").rows.length
+    if(exp_check.checked == true){
+      showExp(selected_val)
+    }
+    else{
+      hidExp()
+    }
+    function showExp(val){
+      let ex, tr;
+      for(i=1;i<tl;i++){
+        ex = document.getElementById('ex_'+i).innerText
+        st = document.getElementById('st_'+i).innerText
+        tr = document.getElementById('tr_'+i)
+        if(ex=="True"){
+          if(val==2 || val ==3){
+            if(val==2 && st == "False"){
+              continue
+            }
+            else if(val==3 && st == "True"){
+              continue
+            }
+            else{
+              tr.style.display = '';
+            }
+          }
+          else{
+            tr.style.display = '';
+          }
+        }
+      }
+    }
+    function hidExp(){
+      let ex, tr;
+      for(i=1;i<tl;i++){
+        ex = document.getElementById('ex_'+i).innerText
+        tr = document.getElementById('tr_'+i)
+        if(ex=="True"){
+          tr.style.display = 'none';
+        }
+      }
+    }
+  }
+  function filter_check_list(){
+    const exp_check = document.getElementById('_toggle_expired');
+    const tl = document.getElementById("_check_list_table").rows.length;
+    const selected_val = document.getElementById('_check_list_filter').value;
+    switch(selected_val){
+      case '1':
+        showAll()
+        break;
+      case '2':
+        showChecked()
+        break;
+      case '3':
+        showUnChecked()
+        break;
+      case '4':
+        showExpired()
+        break;
+    }
+    function showAll(){
+      let tr;
+      for(i=1; i<tl; i++){
+        tr = document.getElementById('tr_'+i)
+        ex = document.getElementById('ex_'+i).innerText
+        if(ex == "True" && !exp_check.checked == true){
+          continue;
+        }
+        else{
+          tr.style.display = '';
+        }
+      }
+    }
+    function showChecked(){
+      let st, tr;
+      for(i=1;i<tl;i++){
+        st = document.getElementById('st_'+i).innerText
+        tr = document.getElementById('tr_'+i)
+        ex = document.getElementById('ex_'+i).innerText
+        if(ex == "True" && !exp_check.checked == true){
+          continue;
+        }
+        if(st=="True"){
+          tr.style.display = '';
+        }
+        else{
+          tr.style.display = 'none';
+        }
+      }
+    }
+    function showUnChecked() {
+      let st, tr;
+      for(i=1;i<tl;i++){
+        st = document.getElementById('st_'+i).innerText
+        tr = document.getElementById('tr_'+i)
+        ex = document.getElementById('ex_'+i).innerText
+        if(ex == "True" && !exp_check.checked == true){
+          continue;
+        }
+        if(st=="False"){
+          tr.style.display = '';
+        }
+        else{
+          tr.style.display = 'none';
+        }
+      }
+    }
+    function showExpired(){
+      let ex, tr;
+      for(i=1;i<tl;i++){
+        ex = document.getElementById('ex_'+i).innerText
+        tr = document.getElementById('tr_'+i)
+        if(ex == "True" && !exp_check.checked == true){
+          continue;
+        }
+        if(ex=="True"){
+          tr.style.display = '';
+        }
+        else{
+          tr.style.display = 'none';
+        }
+      }
+    }
+  }
+  function edit(val){
+    document.getElementById('ch_id').value = document.getElementById('ch_id_'+val).innerText
+    const o_no = document.getElementById('o_no_'+val).innerText
+    const cont = document.getElementById('cont_'+val).innerText
+    const st = document.getElementById('st_'+val).innerText
+    const dt = document.getElementById('dt_'+val).innerText
+    document.getElementById('ed_order_number').value = o_no
+    document.getElementById('ed_content').value = cont
+    document.getElementById('edstatus').checked = st == "True" ? true : false;
+    c_d = dt.split(' ')
+    let strdt
+    y = c_d[2]
+    y = y.substring(0, y.length - 1);
+    d = c_d[1]
+    d = d.substring(0, d.length - 1);
+    d = fixTimer(d)
+    try{
+      hm = c_d[3].split(':')
+      ht = fixTimer(hm[0])
+      let mt;
+      if (typeof(hm[1]) == 'undefined'){
+        mt = '00'
+      }
+      else{
+        mt = fixTimer(hm[1])
+      }
+      ft = ht+":"+mt
+      strdt = `${y}-${getMonth(c_d[0])}-${d}T${ft}`
+      document.getElementById('eddatetime').value = strdt
+      $('#checkListModal').modal('toggle')
+    }
+    catch(e){
+      document.getElementById('dt_exception').style.display = ''
+      document.getElementById('dt_exception').innerText = e.message
+      setTimeout(function(){
+        $('#dt_exception').fadeOut('slow')
+      }, 3000);
+      
+    }
+  }
+  function fixTimer(hm){
+    switch(hm){
+      case '1':
+      case '2':
+      case '3':
+      case '4':
+      case '5':
+      case '6':
+      case '7':
+      case '8':
+      case '9':
+        return `0${hm}`
+        break
+      default:
+        return hm
+    }
+  }
+  function getMonth(strmth){
+    switch(strmth){
+      case 'January':
+        return '01'
+        break
+      case 'February':
+        return '02'
+        break
+      case 'March':
+        return '03'
+        break
+      case 'April':
+        return '04'
+        break
+      case 'May':
+        return '05'
+        break
+      case 'June':
+        return '06'
+        break
+      case 'July':
+        return '07'
+        break
+      case 'August':
+        return '08'
+        break
+      case 'September':
+        return '09'
+        break
+      case 'October':
+        return '10'
+        break
+      case 'November':
+        return '11'
+        break
+      case 'December':
+        return '12'
+        break
+      default :
+        throw new Error('Your date value of this check-list is Invalid');
+    }
+  }
+</script>
+
+

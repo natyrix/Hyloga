@@ -1,0 +1,108 @@
+{% load static %}
+{% load humanize %}
+{% if budget_list %}
+  <div class="well">
+    {% for b_l in budget_list %}
+      <div class="card mb-4">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Vendor Name</th>
+              <th scope="col">Vendor Category</th>
+              <th scope="col">Price Title</th>
+              <th scope="col">Price Amount</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+        {% for plist in b_l %}
+          {% if forloop.counter == 1 %}
+            <div class="card-header bg-light text-dark" id="header_{{forloop.parentloop.counter}}">
+              <h6><strong>#{{ forloop.parentloop.counter }}</strong></h6>
+              <h6>Budget amount: <span class='text-primary'>{{ plist | intcomma }}</span> Birr</h6>
+            </div>
+          {% else %}
+            <tr>
+              <td>{{plist.vendor.name}}</td>
+              <td>{{plist.vendor.category}}</td>
+              <td>{{plist.title}}</td>
+              <td>{{plist.value | intcomma}} Birr</td>
+              <td>
+                    <a class="btn-secondary tltip11 btn">
+                      View Detail <span class="tltiptext11">{{ plist.detail }}</span></a>
+                  </td>
+            </tr>
+          {% endif %}
+        {% endfor %}
+          </tbody>
+        </table>
+       </div>
+    {% endfor %}
+  </div>
+  <script>
+    function calcPrices(){
+      let bprice=0, totalp=0, remprice, header_div
+      {% for b_l in budget_list %}
+        header_div = document.getElementById('header_'+{{forloop.counter}})
+        totalp=0
+        {% for plist in b_l %}
+          {% if forloop.counter == 1 %}
+            bprice = {{plist}}
+          {% else %}
+            totalp+={{plist.value}}
+          {% endif %}
+        {% endfor %}
+        remprice = bprice-totalp
+        remprice = `${remprice.toLocaleString()}`
+        totalp = `${totalp.toLocaleString()}`
+
+        header_div.innerHTML+=`
+          <p>Total price on this plan: <span class='text-primary'>${totalp}</span> Birr</p>
+          <p>Remaining amount: <span class='text-primary'>${remprice}</span> Birr</p>
+        `
+      {% endfor %}
+    }
+    calcPrices()
+  </script>
+{% else %}
+  <div class="text-center">
+    <h5 class="text-warning">You have not saved any budget plans yet.</h5>
+  </div>
+{% endif %}
+<div class="row">
+  <div class="col-md-12">
+    {% if users_budgets.has_other_pages %}
+      <ul class="pagination">
+        {% if users_budgets.has_previous %}
+          <li class="page-item">
+            <a href="?page={{users_budgets.previous_page_number}}" class="page-link">&laquo;</a>
+          </li>
+        {% else %}
+          <li class="page-item disabled">
+            <a class="page-link">&laquo;</a>
+          </li>
+        {% endif %}
+        {% for i in users_budgets.paginator.page_range %}
+          {% if users_budgets.number == i %}
+            <li class="page-item active">
+              <a class="page-link">{{i}}</a>
+            </li>
+          {% else %}
+            <li class="page-item">
+              <a href="?page={{i}}" class="page-link">{{i}}</a>
+            </li>
+          {% endif %}
+        {% endfor %}
+        {% if users_budgets.has_next %}
+          <li class="page-item">
+            <a href="?page={{users_budgets.next_page_number}}" class="page-link">&raquo;</a>
+          </li>
+        {% else %}
+          <li class="page-item disabled">
+            <a class="page-link">&raquo;</a>
+          </li>
+        {% endif %}
+      </ul>
+    {% endif %}
+  </div>
+</div>

@@ -20,25 +20,53 @@
 </nav>
 
 <script>
-  var wed_date = document.getElementById('wedding_date');
-  var endDate = new Date(wed_date.value)
-  var _second = 1000;
-  var _minute = _second * 60;
-  var _hour = _minute * 60;
-  var _day = _hour * 24;
-  var timer;
+  function modifyDate(wed_date){
+    let x = wed_date.toString().split(' ');
+    switch (x[0]) {
+      case 'Jan.':
+        x[0] = 'January';
+        break;
+      case 'Feb.':
+        x[0] = 'February';
+            break;
+      case 'Aug.':
+        x[0] = 'August';
+        break;
+      case 'Sept.':
+        x[0] = 'September';
+        break;
+      case 'Oct.':
+        x[0] = 'October';
+        break;
+      case 'Nov.':
+        x[0] = 'November';
+        break;
+      case 'Dec.':
+        x[0] = 'December';
+        break;
+    }
+    return x.join(' ');
+  }
+  let wed_date = document.getElementById('wedding_date');
+  wed_date.value = modifyDate(wed_date.value);
+  let endDate = new Date(wed_date.value);
+  let _second = 1000;
+  let _minute = _second * 60;
+  let _hour = _minute * 60;
+  let _day = _hour * 24;
+  let timer;
   function remainingDate(){
-    var now = new Date();
-    var distance = endDate-now
+    let now = new Date();
+    let distance = endDate-now;
     if (distance < 0) {
       clearInterval(timer);
       document.getElementById('countdown').innerHTML = 'Your wedding date has been passed';
       return;
     }
-    var days = Math.floor(distance / _day);
-    var hours = Math.floor((distance % _day) / _hour);
-    var minutes = Math.floor((distance % _hour) / _minute);
-    var seconds = Math.floor((distance % _minute) / _second);
+    let days = Math.floor(distance / _day);
+    let hours = Math.floor((distance % _day) / _hour);
+    let minutes = Math.floor((distance % _hour) / _minute);
+    let seconds = Math.floor((distance % _minute) / _second);
 
     document.getElementById('countdown').innerHTML = days + ' days ';
     document.getElementById('countdown').innerHTML += hours + ' hrs ';

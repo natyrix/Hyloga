@@ -1,0 +1,17 @@
+{% load static %}
+{% load humanize %}
+{% if pricing %}
+  <div class="row">
+  {% for p in pricing %}
+  <div class="card bg-light mb-3 mr-4" style="max-width: 30rem;" >
+    <div class="card-header"><h4>{{ p.title }}</h4></div>
+    <div class="card-body">
+      <h5 class="card-title">ETB: {{ p.value | intcomma }} Birr</h5>
+      <p class="card-text">{{ p.detail }}</p>
+    </div>
+  </div>
+  {% endfor %}
+  </div>
+{% else %}
+  <h4>No pricing available for this vendor</h4>
+{% endif %}

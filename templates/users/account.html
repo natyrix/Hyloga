@@ -1,10 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% load static %}
+<div class="row">
+  <div class="col-sm-9 col-md-6">
+    <div class="card">
+      <div class="card-header bg-dark text-white">
+        <h5>
+          Edit your profile</h5>
+      </div>
+  <div class="card-body">
+    <form method="post" action="{% url 'users_edit_profile' %}" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ account_form.as_p }}
+      <div class="form-group">
+        <label>Wedding Date: </label>
+        <input type="date" id="wed_date" name="wed_date" class="form-control" required>
+        {{ date_form.wedding_date }}
+      </div>
+      <input type="submit" value="Edit" class="btn btn-primary btn-block">
+    </form>
+    </div>
+  </div>
+  </div>
+  <div class="col-sm-9 col-md-5">
+    <div class="card">
+      <div class="card-header bg-dark text-white">
+        <h5>
+          Change your password</h5>
+      </div>
+      <div class="card-body">
+        <form method="post" action="{% url 'users_edit_password' %}" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="old_password">Old Password</label>
+            <input type="password" id="old_password" name="old_password" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="password">New Password</label>
+            <input type="password" id="password" name="password" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="password2">Confirm Password</label>
+            <input type="password" name="password2" id="password2" class="form-control" required>
+          </div>
+          <input type="submit" value="Change" class="btn btn-primary">
+        </form>
+        </div>
+    </div>
+  </div>
+</div>
+<script>
+  const wedd_date = document.getElementById('wedding_date');
+  document.getElementById('wed_date').valueAsDate = new Date(wedd_date.value);
+  document.getElementById('wed_date').min = new Date().toISOString().split("T")[0];
+</script>

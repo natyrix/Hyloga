@@ -8,8 +8,77 @@
   <link rel="shortcut icon" type="image/png" href="{% static 'favicon3.ico' %}"/>
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <link rel="stylesheet" href="{% static 'css/lightbox.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/datetimepicker.css' %}">
   <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
-  <title>Hyloga {% block title %} {% endblock %}</title>
+  <style>
+    .tltip {
+      position: relative !important;
+      display: inline-block !important;
+    }
+
+    .tltip .tltiptext {
+      visibility: hidden;
+      width: 320px;
+      background-color: wheat;
+      cursor: text !important;
+      color: black;
+      text-align: center;
+      border-radius: 6px;
+      padding: 5px 0;
+      position: absolute;
+      z-index: 1;
+      top: -150px;
+      left: 110%;
+    }
+
+    .tltip .tltiptext::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: 100%;
+      margin-top: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: transparent black transparent transparent;
+    }
+    .tltip:hover .tltiptext {
+      visibility: visible;
+    }
+    .tltip11 {
+      position: relative !important;
+      display: inline-block !important;
+    }
+
+    .tltip11 .tltiptext11 {
+      visibility: hidden;
+      width: 320px;
+      background-color: wheat;
+      cursor: text !important;
+      color: black;
+      text-align: center;
+      border-radius: 6px;
+      padding: 5px 0;
+      position: absolute;
+      z-index: 1;
+      top: -150px;
+      right: 110%;
+    }
+
+    .tltip11 .tltiptext11::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 100%;
+      margin-top: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: transparent black transparent transparent;
+    }
+    .tltip11:hover .tltiptext11 {
+      visibility: visible;
+    }
+  </style>
+  <title>Hailoga {% block title %} {% endblock %}</title>
 </head>
 <body>
 {% include 'users/nav.html' %}
@@ -20,5 +89,7 @@
   <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
   <script src="{% static 'js/main.js' %}"></script>
   <script src="{% static 'js/lightbox.min.js' %}"></script>
+  {% block javascript %}
+  {% endblock javascript %}
 </body>
 </html>

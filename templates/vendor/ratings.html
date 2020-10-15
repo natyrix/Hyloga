@@ -1,0 +1,258 @@
+{% load static %}
+{% load humanize %}
+{% if ratings %}
+    <div class="col-sm-7 col-md-3">
+      <h4>Rating Summary</h4>
+      <span
+        {% if r_avg >= 1 %}
+          class="fa fa-star checked"
+        {% else %}
+          class="fa fa-star"
+        {% endif %}
+      ></span>
+      <span
+        {% if r_avg >= 2 %}
+          class="fa fa-star checked"
+        {% else %}
+          class="fa fa-star"
+        {% endif %}
+      ></span>
+      <span
+        {% if r_avg >= 3 %}
+          class="fa fa-star checked"
+        {% else %}
+          class="fa fa-star"
+        {% endif %}
+      ></span>
+      <span
+        {% if r_avg >= 4 %}
+          class="fa fa-star checked"
+        {% else %}
+          class="fa fa-star"
+        {% endif %}
+      ></span>
+      <span
+        {% if r_avg >= 5 %}
+          class="fa fa-star checked"
+        {% else %}
+          class="fa fa-star"
+        {% endif %}
+      ></span>
+      <p>{{ r_avg | floatformat:1 }} average based on {{ r_count }} reviews.</p>
+      <hr style="border:3px solid #f1f1f1">
+          <div class="row">
+            <div class="side">
+              <div>5 star</div>
+            </div>
+            <div class="middle">
+              <div class="bar-container">
+                <div class="bar-5"
+                     {% if r5_p %}
+                      style="width:{{ r5_p }}%"
+                     {% else %}
+                      style="width: 0%"
+                     {% endif %}
+                ></div>
+              </div>
+            </div>
+            <div class="side right">
+              <div>
+                {% if r5_count %}
+                  {{ r5_count }}
+                {% else %}
+                  0
+                {% endif %}
+              </div>
+            </div>
+            <div class="side">
+              <div>4 star</div>
+            </div>
+            <div class="middle">
+              <div class="bar-container">
+                <div class="bar-4"
+                  {% if r4_p %}
+                      style="width: {{ r4_p }}%"
+                   {% else %}
+                      style="width: 0%"
+                   {% endif %}
+                ></div>
+              </div>
+            </div>
+            <div class="side right">
+              <div>
+                {% if r4_count %}
+                  {{ r4_count }}
+                {% else %}
+                  0
+                {% endif %}
+              </div>
+            </div>
+            <div class="side">
+              <div>3 star</div>
+            </div>
+            <div class="middle">
+              <div class="bar-container">
+                <div class="bar-3"
+                  {% if r3_p %}
+                      style="width: {{ r3_p }}%"
+                   {% else %}
+                      style="width: 0%"
+                   {% endif %}
+                ></div>
+              </div>
+            </div>
+            <div class="side right">
+              <div>
+                {% if r3_count %}
+                  {{ r3_count }}
+                {% else %}
+                  0
+                {% endif %}
+              </div>
+            </div>
+            <div class="side">
+              <div>2 star</div>
+            </div>
+            <div class="middle">
+              <div class="bar-container">
+                <div class="bar-2"
+                  {% if r2_p %}
+                      style="width: {{ r2_p }}%"
+                   {% else %}
+                      style="width: 0%"
+                   {% endif %}
+                ></div>
+              </div>
+            </div>
+            <div class="side right">
+              <div>
+                {% if r2_count %}
+                  {{ r2_count }}
+                {% else %}
+                  0
+                {% endif %}
+              </div>
+            </div>
+            <div class="side">
+              <div>1 star</div>
+            </div>
+            <div class="middle">
+              <div class="bar-container">
+                <div class="bar-1"
+                  {% if r1_p %}
+                      style="width: {{ r1_p }}%"
+                   {% else %}
+                      style="width: 0%"
+                   {% endif %}
+                ></div>
+              </div>
+            </div>
+            <div class="side right">
+              <div>
+                {% if r1_count %}
+                  {{ r1_count }}
+                {% else %}
+                  0
+                {% endif %}
+              </div>
+            </div>
+          </div>
+    </div>
+  {% endif %}
+<hr>
+{% if ratings %}
+    <div class="row">
+    {% for rating in ratings %}
+        <div class="card mb-4 mr-4" style="width: 20rem;">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <span
+                        {% if rating.rate_value >= 1 %}
+                          class="fa fa-star checked"
+                        {% else %}
+                          class="fa fa-star"
+                        {% endif %}
+                      ></span>
+                      <span
+                        {% if rating.rate_value >= 2 %}
+                          class="fa fa-star checked"
+                        {% else %}
+                          class="fa fa-star"
+                        {% endif %}
+                      ></span>
+                      <span
+                        {% if rating.rate_value >= 3 %}
+                          class="fa fa-star checked"
+                        {% else %}
+                          class="fa fa-star"
+                        {% endif %}
+                      ></span>
+                      <span
+                        {% if rating.rate_value >= 4 %}
+                          class="fa fa-star checked"
+                        {% else %}
+                          class="fa fa-star"
+                        {% endif %}
+                      ></span>
+                      <span
+                        {% if rating.rate_value >= 5 %}
+                          class="fa fa-star checked"
+                        {% else %}
+                          class="fa fa-star"
+                        {% endif %}
+                      ></span>
+                      ({{rating.rate_value}})
+                </li>
+                <li class="list-group-item"><i class="fas fa-user-alt"></i> Rated by:
+                    {% if rating.user %}
+                        {{rating.user}} (spouses)
+                    {% else %}
+                        {{rating.guest}} (guest)
+                    {% endif %}
+                </li>
+<!--                <li class="list-group-item"><i class="fas fa-calendar-alt"></i> Rated at: {{rating.}}</li>-->
+            </ul>
+        </div>
+    {% endfor %}
+    </div>
+{% else %}
+    <h6>You have not been rated yet.</h6>
+{% endif %}
+
+<div class="row">
+  <div class="col-md-12">
+    {% if ratings.has_other_pages %}
+      <ul class="pagination">
+        {% if ratings.has_previous %}
+          <li class="page-item">
+            <a href="?page={{ratings.previous_page_number}}" class="page-link">&laquo;</a>
+          </li>
+        {% else %}
+          <li class="page-item disabled">
+            <a class="page-link">&laquo;</a>
+          </li>
+        {% endif %}
+        {% for i in ratings.paginator.page_range %}
+          {% if ratings.number == i %}
+            <li class="page-item active">
+              <a class="page-link">{{i}}</a>
+            </li>
+          {% else %}
+            <li class="page-item">
+              <a href="?page={{i}}" class="page-link">{{i}}</a>
+            </li>
+          {% endif %}
+        {% endfor %}
+        {% if ratings.has_next %}
+          <li class="page-item">
+            <a href="?page={{ratings.next_page_number}}" class="page-link">&raquo;</a>
+          </li>
+        {% else %}
+          <li class="page-item disabled">
+            <a class="page-link">&raquo;</a>
+          </li>
+        {% endif %}
+      </ul>
+    {% endif %}
+  </div>
+</div>

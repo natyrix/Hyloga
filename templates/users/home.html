@@ -18,6 +18,36 @@
       {% if 'users_vendor' in request.path %}
         {% include 'users/vendor.html' %}
       {% endif %}
+      {% if 'chats' in request.path %}
+        {% include 'users/users_chat.html' %}
+      {% endif %}
+      {% if 'check_list' in request.path %}
+        {% include 'users/users_check_list.html' %}
+      {% endif %}
+      {% if 'appointments' in request.path %}
+        {% include 'users/appointments.html' %}
+      {% endif %}
+      {% if 'bookings' in request.path %}
+        {% include 'users/bookings.html' %}
+      {% endif %}
+      {% if 'budget' in request.path %}
+        {% include 'users/users_budget.html' %}
+      {% endif %}
+      {% if 'all_b' in request.path %}
+        {% include 'users/users_all_budgets.html' %}
+      {% endif %}
+      {% if 'upload' in request.path %}
+        {% include 'users/users_upload.html' %}
+      {% endif %}
+      {% if 'gallery' in request.path %}
+        {% include 'users/users_gallery.html' %}
+      {% endif %}
+      {% if 'account' in request.path %}
+        {% include 'users/account.html' %}
+      {% endif %}
+      {% if 'notification' in request.path %}
+        {% include 'users/notifications.html' %}
+      {% endif %}
     </main>
   </div>
 </div>

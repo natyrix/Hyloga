@@ -2,6 +2,7 @@
 <nav class="col-md-2 d-none d-md-block bg-light sidebar">
   <div class="sidebar-sticky">
     <ul class="nav flex-column">
+      <hr>
       <li class="nav-item">
         <a href="#"
         {% if 'dashboard' in request.path %}
@@ -15,7 +16,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a href="#"
+        <a href="{% url 'vendor_appointments' vendor.slug %}"
            {% if 'appointments' in request.path %}
               class="nav-link active"
            {% else %}
@@ -27,7 +28,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a href="#"
+        <a href="{% url 'vendor_bookings' vendor.slug %}"
         {% if 'bookings' in request.path %}
           class="nav-link active"
         {% else %}
@@ -36,6 +37,33 @@
         >
           <i class="fas fa-calendar-check"></i>
           Bookings
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="{% url 'vendor_chats' vendor.slug %}"
+        {% if 'chat' in request.path %}
+          class="nav-link active"
+        {% else %}
+          class="nav-link"
+        {% endif %}
+        >
+        <i
+          {% if chat_count %}
+            class="fas fa-envelope text-danger"
+          {% else %}
+            class="fas fa-envelope"
+          {% endif %}
+          >
+          </i>
+          <span
+          {% if chat_count %}
+            class="text-danger"
+          {% endif %}
+          >Chats
+          {% if chat_count %}
+              <sup class="text-danger">{{ chat_count }}</sup>
+          {% endif %}
+          </span>
         </a>
       </li>
       <li class="nav-item">
@@ -51,15 +79,27 @@
         </a>
       </li>
       <li class="nav-item">
-        <a href="#"
-        {% if 'rateandreview' in request.path %}
+        <a href="{% url 'vendor_ratings' vendor.slug %}"
+        {% if 'ratings' in request.path %}
           class="nav-link active"
         {% else %}
           class="nav-link"
         {% endif %}
         >
            <i class="fas fa-star"></i>
-          Ratings and Reviews
+          Ratings
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="{% url 'vendor_reviews' vendor.slug %}"
+        {% if 'reviews' in request.path %}
+          class="nav-link active"
+        {% else %}
+          class="nav-link"
+        {% endif %}
+        >
+           <i class="fas fa-comment"></i>
+          Reviews
         </a>
       </li>
       <li class="nav-item">
@@ -87,15 +127,30 @@
         </a>
       </li>
       <li class="nav-item">
-        <a href="#"
+        <a href="{% url 'vendor_notifications' vendor.slug %}"
         {% if 'notification' in request.path %}
           class="nav-link active"
         {% else %}
           class="nav-link"
         {% endif %}
         >
-          <i class="fas fa-bell"></i>
-          Notification
+          <i
+          {% if not_count %}
+            class="fas fa-bell text-danger"
+          {% else %}
+            class="fas fa-bell"
+          {% endif %}
+          >
+          </i>
+          <span
+          {% if not_count %}
+            class="text-danger"
+          {% endif %}
+          >Notification
+          {% if not_count %}
+              <sup class="text-danger">{{ not_count }}</sup>
+          {% endif %}
+          </span>
         </a>
       </li>
     </ul>

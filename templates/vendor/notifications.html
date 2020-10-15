@@ -1,0 +1,74 @@
+{% load static %}
+{% load humanize %}
+{% if notifications %}
+    {% for n in notifications %}
+        <div
+        {% if not n.read_status %}
+            class="card col-4 mb-4 mr-4 bg-light"
+        {% else %}
+            class="card col-4 mb-4 mr-4"
+        {% endif %}
+        >
+            <a style="text-decoration: none"
+            {% if 'appointment' in n.title %}
+                href="{% url 'vendor_appointments' vendor.slug %}"
+            {% elif 'booking' in n.title %}
+                href="{% url 'vendor_bookings' vendor.slug %}"
+            {% elif 'rating' in n.title %}
+                href="{% url 'vendor_ratings' vendor.slug %}"
+            {% elif 'review' in n.title %}
+                href="{% url 'vendor_reviews' vendor.slug %}"
+            {% endif %}
+            >
+            <div class="card-body">
+                {{n.title}}
+            </div>
+            <div class="card-footer">
+                <h6>{{n.notification_date | naturaltime}}</h6>
+            </div>
+            </a>
+        </div>
+    {% endfor %}
+{% else %}
+    <h5 class="text-info">No notifications</h5>
+{% endif %}
+
+<div class="row">
+  <div class="col-md-12">
+    {% if notifications.has_other_pages %}
+      <ul class="pagination">
+        {% if notifications.has_previous %}
+          <li class="page-item">
+            <a href="?page={{notifications.previous_page_number}}" class="page-link">&laquo;</a>
+          </li>
+        {% else %}
+          <li class="page-item disabled">
+            <a class="page-link">&laquo;</a>
+          </li>
+        {% endif %}
+        {% for i in notifications.paginator.page_range %}
+          {% if notifications.number == i %}
+            <li class="page-item active">
+              <a class="page-link">{{i}}</a>
+            </li>
+          {% else %}
+            <li class="page-item">
+              <a href="?page={{i}}" class="page-link">{{i}}</a>
+            </li>
+          {% endif %}
+        {% endfor %}
+        {% if ratings.has_next %}
+          <li class="page-item">
+            <a href="?page={{notifications.next_page_number}}" class="page-link">&raquo;</a>
+          </li>
+        {% else %}
+          <li class="page-item disabled">
+            <a class="page-link">&raquo;</a>
+          </li>
+        {% endif %}
+      </ul>
+    {% endif %}
+  </div>
+</div>
+
+

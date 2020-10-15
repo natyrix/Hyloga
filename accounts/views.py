@@ -1,7 +1,11 @@
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
+from datetime import datetime
+from Users.views import isUser, setExpired
 from Vendor.models import Category, Vendor, st
 from django.contrib import messages, auth
+from rest_framework.authtoken.models import Token
+from Vendor.views import isVendor, setExpiredVendor
 from .forms import UsersForm
 from .models import AccountType, AcType
 from Users.models import Users
@@ -56,6 +60,7 @@ def registerCouple(request):
                                       fiance_email=fiance_email, login_id=user
                                       )
                         users.save()
+                        Token.objects.create(user=user)
                         messages.success(request, "Registered successfully you can now login.")
                         return render(request, 'accounts/login.html')
             else:
@@ -154,10 +159,12 @@ def login(request):
                 if acType:
                     if acType.Actype == AcType[1][0]:#Vendor
                         vendor = Vendor.objects.get(login_id=user)
+                        setExpiredVendor(vendor)
                         messages.success(request, "Successfully logged in")
                         return redirect('vendor_dashboard', vendor.slug)
                     elif acType.Actype == AcType[2][0]:#Users
                         users = Users.objects.get(login_id=user)
+                        setExpired(users)
                         messages.success(request, "Successfully logged in")
                         return redirect('users_home', users.slug)
                     elif acType.Actype == AcType[0][0]:#Admin
@@ -187,6 +194,9 @@ def login(request):
 
 def logout(request):
     if request.method == 'POST':
+        us = Users.objects.all()
+        for u in us:
+            Token.objects.create(user=u.login_id)
         auth.logout(request)
         messages.success(request, "You are logged out")
         return render(request, 'index.html')

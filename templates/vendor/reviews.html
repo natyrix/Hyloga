@@ -1,0 +1,58 @@
+{% load static %}
+{% if reviews %}
+    {% for review in reviews %}
+        <div class="card mb-4 mr-4">
+            <div class="card-body bg-light">
+                <h6>Reviewer:
+                {% if review.user %}
+                    {{review.user}} (spouses)
+                {% else %}
+                    {{review.guest}} (guest)
+                {% endif %}
+                </h6>
+            </div>
+            <div class="card-body">
+                {{review.review}}
+            </div>
+        </div>
+    {% endfor %}
+{% else %}
+    <h6>You have no reviews yet.</h6>
+{% endif %}
+<div class="row">
+  <div class="col-md-12">
+    {% if reviews.has_other_pages %}
+      <ul class="pagination">
+        {% if vendors.has_previous %}
+          <li class="page-item">
+            <a href="?page={{reviews.previous_page_number}}" class="page-link">&laquo;</a>
+          </li>
+        {% else %}
+          <li class="page-item disabled">
+            <a class="page-link">&laquo;</a>
+          </li>
+        {% endif %}
+        {% for i in reviews.paginator.page_range %}
+          {% if reviews.number == i %}
+            <li class="page-item active">
+              <a class="page-link">{{i}}</a>
+            </li>
+          {% else %}
+            <li class="page-item">
+              <a href="?page={{i}}" class="page-link">{{i}}</a>
+            </li>
+          {% endif %}
+        {% endfor %}
+        {% if reviews.has_next %}
+          <li class="page-item">
+            <a href="?page={{reviews.next_page_number}}" class="page-link">&raquo;</a>
+          </li>
+        {% else %}
+          <li class="page-item disabled">
+            <a class="page-link">&raquo;</a>
+          </li>
+        {% endif %}
+      </ul>
+    {% endif %}
+  </div>
+</div>

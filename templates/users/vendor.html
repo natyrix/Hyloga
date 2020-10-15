@@ -3,15 +3,6 @@
   <div class="col-sm-7 col-md-3">
     <h3>Name: {{ vendor.name }}</h3>
     <img src="{{ vendor.logo.url }}" alt="" class="img-fluid">
-    {% if 'vendor_images' %}
-    {% for image in vendor_images %}
-      <div class="col-md-4">
-        <a href="{{ image.image_location.url }}" data-lightbox="home-images">
-          <img src="{{ image.image_location.url }}" alt="" class="img-fluid">
-        </a>
-      </div>
-    {% endfor %}
-  {% endif %}
   </div>
   <div class="col-sm-7 col-md-3">
     <br/>
@@ -60,7 +51,7 @@
           class="fa fa-star"
         {% endif %}
       ></span>
-      <p>{{ r_avg }} average based on {{ r_count }} reviews.</p>
+      <p>{{ r_avg | floatformat:1 }} average based on {{ r_count }} reviews.</p>
       <hr style="border:3px solid #f1f1f1">
           <div class="row">
         <div class="side">
@@ -70,7 +61,7 @@
           <div class="bar-container">
             <div class="bar-5"
                  {% if r5_p %}
-                  style="width: {{ r5_p }}%"
+                  style="width:{{ r5_p }}%"
                  {% else %}
                   style="width: 0%"
                  {% endif %}
@@ -181,10 +172,361 @@
       </div>
     </div>
   {% endif %}
+  <div class="col-md-3">
+    <button class="btn-secondary btn" data-toggle="modal" data-target="#rateModal"><i class="fas fa-star-half-alt"></i> Rate</button>
+    <button class="btn-secondary btn" data-toggle="modal" data-target="#reviewModal"><i class="fas fa-comments"></i> Review</button>
+    <hr>
+    <button class="btn-secondary btn" data-toggle="modal" data-target="#chatModal"><i class="fas fa-envelope"></i> Send Message</button>
+    <hr>
+    <button class="btn-secondary btn" data-toggle="modal" data-target="#AppModal"><i class="fas fa-meetup"></i> Make Appointment</button>
+    <hr>
+    <button class="btn-secondary btn" data-toggle="modal" data-target="#BookModal"><i class="fas fa-meetup"></i> Book this vendor</button>
+  </div>
 </div>
 <div class="row col-md-7">
 
 </div>
+<hr/>
 <div class="row">
-
+  <div class="col-xs-12 ">
+    <nav>
+      <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+        <a class="nav-item nav-link active" id="nav-pricing-tab" data-toggle="tab" href="#nav-pricing" role="tab" aria-controls="nav-pricing" aria-selected="true"><i class="fas fa-money-bill-alt"></i> Pricings</a>
+        <a class="nav-item nav-link" id="nav-apptandbook-tab" data-toggle="tab" href="#nav-apptandbook" role="tab" aria-controls="nav-apptandbook" aria-selected="false"><i class="fas fa-calendar-check"></i> Appointment and Bookings</a>
+        <a class="nav-item nav-link" id="nav-review-tab" data-toggle="tab" href="#nav-review" role="tab" aria-controls="nav-review" aria-selected="false"><i class="fas fa-comments"></i> Reviews</a>
+        <a class="nav-item nav-link" id="nav-gallery-tab" data-toggle="tab" href="#nav-gallery" role="tab" aria-controls="nav-gallery" aria-selected="false"><i class="fas fa-images"></i> Gallery</a>
+        <a class="nav-item nav-link" id="nav-chat-tab" data-toggle="tab" href="#nav-chat" role="tab" aria-controls="nav-chat" aria-selected="false"><i class="fas fa-envelope"></i> Chat</a>
+        <a class="nav-item nav-link" id="nav-about-tab" data-toggle="tab" href="#nav-about" role="tab" aria-controls="nav-about" aria-selected="false"><i class="fas fa-star-half-alt"></i> About</a>
+      </div>
+    </nav>
+    <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="nav-pricing" role="tabpanel" aria-labelledby="nav-pricing-tab">
+        {% include 'users/vendor_pricing.html' %}
+      </div>
+       <div class="tab-pane fade" id="nav-apptandbook" role="tabpanel" aria-labelledby="nav-apptandbook-tab">
+        {% include 'users/vendor_appt_and_book.html' %}
+      </div>
+      <div class="tab-pane fade" id="nav-review" role="tabpanel" aria-labelledby="nav-review-tab">
+        {% if review %}
+          {% include 'users/vendor_reviews.html' %}
+        {% else %}
+          <h5>No review available</h5>
+        {% endif %}
+      </div>
+      <div class="tab-pane fade" id="nav-gallery" role="tabpanel" aria-labelledby="nav-gallery-tab">
+        {% if vendor_images %}
+          {% include 'users/vendor_gallery.html' %}
+        {% else %}
+          <h5>No images available</h5>
+        {% endif %}
+      </div>
+      <div class="tab-pane fade" id="nav-chat" role="tabpanel" aria-labelledby="nav-chat-tab">
+        {% if vendor_messages %}
+          {% include 'users/vendor_chat.html' %}
+        {% else %}
+          <h5>No messages</h5>
+        {% endif %}
+      </div>
+      <div class="tab-pane fade" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab">
+        <h5>About</h5>
+      </div>
+    </div>
+  </div>
 </div>
+<hr/>
+
+<!--Rate-->
+
+<div class="modal fade" id="rateModal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      {% if user_can_rate %}
+        <div class="modal-header">
+          <h5 class="modal-title" id="inquiryModalLabel"><i class="fas fa-star-half-alt"></i> Rate Vendor {{ vendor.name }}</h5>
+          <button type="button" class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h6>Rate</h6>
+          <br>
+          <form action="{% url 'users_rate_vendor' vendor.slug %}" method="post">
+            {% csrf_token %}
+            <input id="rating-system" name="rate_val" type="number" value="3" class="rating form-control" min="1" max="5" step="1" >
+            <br/>
+            <input type="submit" value="Rate" class="btn btn-success">
+            <a href="#" class="btn btn-secondary" style="float: right;" data-dismiss="modal">
+            Cancel
+            </a>
+          </form>
+        </div>
+      {% else %}
+        <div class="modal-header">
+          <h5 class="modal-title" id="inquiryModalLabel1"><i class="fas fa-star-half-alt"></i> Rate Vendor {{ vendor.name }}</h5>
+          <button type="button" class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h6>Update your rating</h6>
+          <br>
+          <form action="{% url 'update_vendor_rating' user_rate.id %}" method="post">
+            {% csrf_token %}
+            <input name="update_rate_val" type="number" value="{{ user_rate.rate_value }}" class="rating form-control" min="1" max="7" step="1" >
+            <br/>
+            <input type="submit" value="Update" class="btn btn-success">
+            <a href="#" class="btn btn-secondary" style="float: right;" data-dismiss="modal">
+            Cancel
+            </a>
+          </form>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<!--Review-->
+
+<div class="modal fade" id="reviewModal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      {% if user_can_review %}
+        <div class="modal-header">
+          <h5 class="modal-title" id="reviewModalLabel"><i class="fas fa-comments"></i> Review Vendor {{ vendor.name }}</h5>
+          <button type="button" class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h6>Review</h6>
+          <br>
+          <form action="{% url 'users_review_vendor' vendor.slug %}" method="post">
+            {% csrf_token %}
+            <textarea name="review" class="form-control" required></textarea>
+            <br/>
+            <input type="submit" value="Submit" class="btn btn-success">
+            <a href="#" class="btn btn-secondary" style="float: right;" data-dismiss="modal">
+            Cancel
+            </a>
+          </form>
+        </div>
+      {% else %}
+        <div class="modal-header">
+          <h5 class="modal-title" id="reviewModalLabel1"><i class="fas fa-comments"></i> Review Vendor {{ vendor.name }}</h5>
+          <button type="button" class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h6>Updated your review</h6>
+          <br>
+          <form action="{% url 'update_vendor_review' user_review.id %}" method="post">
+            {% csrf_token %}
+            <textarea name="updated_review" class="form-control">{{ user_review.review }}</textarea>
+            <br/>
+            <input type="submit" value="Update" class="btn btn-success">
+            <a href="#" class="btn btn-secondary" style="float: right;" data-dismiss="modal">
+            Cancel
+            </a>
+          </form>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+
+<!--SendMessage-->
+
+<div class="modal fade" id="chatModal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="chatModalLabel"><i class="fas fa-envelope"></i> Send message to {{ vendor.name }}</h5>
+          <button type="button" class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h6>Message: </h6>
+          <br>
+          <form action="{% url 'users_send_message_vendor' vendor.slug %}" method="post">
+            {% csrf_token %}
+            <textarea name="msg" class="form-control"></textarea>
+            <br/>
+            <input type="submit" value="Send" class="btn btn-success">
+            <a href="#" class="btn btn-secondary" style="float: right;" data-dismiss="modal">
+            Cancel
+            </a>
+          </form>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="AppModal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="AppModalLabel"><i class="fas fa-envelope"></i> Make an appointment with {{ vendor.name }}</h5>
+          <button type="button" class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h6>Make Appointment </h6>
+          <div class="text-center" id="app_err_div">
+
+          </div>
+          <br>
+          <form method="post" onsubmit="return mk_apt()" id="appt_form">
+            {% csrf_token %}
+            <label>Appointment Date: <sup class="text-danger">*</sup></label>
+            <input class="form-control" type="date" required name="ap_date" id="ap_date">
+            <label>Appointment start time: <sup class="text-danger">*</sup></label>
+            <input class="form-control" type="time" required name="ap_st_time" id="ap_st_time">
+            <label>Appointment end time: <sup class="text-danger">*</sup></label>
+            <input class="form-control" type="time" required name="ap_en_time" id="ap_en_time">
+            <label>Vendor: <sup class="text-danger">*</sup></label>
+            <input class="form-control" value="{{ vendor }}" type="text" required name="ap_vendor" id="ap_vendor" readonly>
+            <input style="display: none" value="{{ vendor.id }}" type="text" name="ap_vendor_id" id="ap_vendor_id" readonly>
+            <br/>
+            <input type="submit" value="Send" class="btn btn-success">
+            <a href="#" class="btn btn-secondary" style="float: right;" data-dismiss="modal">
+            Cancel
+            </a>
+          </form>
+        </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="BookModal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="BookModalLabel"><i class="fas fa-envelope"></i> Book vendor {{ vendor.name }}</h5>
+          <button type="button" class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h6>Booking Form </h6>
+          <div class="text-center" id="bk_err_div">
+
+          </div>
+          <br>
+          <form method="post" onsubmit="return mk_booking()" id="book_form">
+            {% csrf_token %}
+            <label>Booking Date: <sup class="text-danger">*</sup></label>
+            <input class="form-control" type="date" required name="bk_date" id="bk_date">
+            <label>Booking start time: <sup class="text-danger">*</sup></label>
+            <input class="form-control" type="time" required name="bk_st_time" id="bk_st_time">
+            <label>Booking end time: <sup class="text-danger">*</sup></label>
+            <input class="form-control" type="time" required name="bk_en_time" id="bk_en_time">
+            <label>Vendor: <sup class="text-danger">*</sup></label>
+            <input class="form-control" value="{{ vendor }}" type="text" required name="bk_vendor" id="bk_vendor" readonly>
+            <input style="display: none" value="{{ vendor.id }}" type="text" name="bk_vendor_id" id="bk_vendor_id" readonly>
+            <br/>
+            <input type="submit" value="Send" class="btn btn-success">
+            <a href="#" class="btn btn-secondary" style="float: right;" data-dismiss="modal">
+            Cancel
+            </a>
+          </form>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+  const book_date_control = document.getElementById('bk_date');
+  book_date_control.valueAsDate = new Date();
+  book_date_control.min = new Date().toISOString().split("T")[0];
+  const date_control = document.getElementById('ap_date');
+  date_control.valueAsDate = new Date();
+  date_control.min = new Date().toISOString().split("T")[0];
+  function c_time(ss, ee){
+    let s = ss.split(':');
+    let e = ee.split(':');
+    if(parseInt(s[0]) < parseInt(e[0])){
+      return true
+    }
+    if(parseInt(s[0]) === parseInt(e[0])){
+      if(parseInt(s[1]) < parseInt(e[1])){
+        return true
+      }
+    }
+    return false
+  }
+  function mk_booking() {
+    const err_div = document.getElementById('bk_err_div');
+    const start_time = document.getElementById('bk_st_time').value;
+    const end_time = document.getElementById('bk_en_time').value;
+    console.log(start_time);
+    console.log(end_time);
+    if(!c_time(start_time, end_time)){
+      err_div.innerHTML = `
+          <span id="save_err" class="text-danger">End time can not be set earlier to start time</span>
+        `;
+      return false
+    }
+    let serialized_data = $('#book_form').serialize();
+    $.ajax({
+      type: 'POST',
+      url: "{% url 'users_make_booking' users.slug %}",
+      data: serialized_data,
+      success: function(response){
+        const sucMsg = response["message"];
+        err_div.innerHTML = `
+          <span id="save_err" class="text-success">${sucMsg}</span>
+        `;
+        setTimeout(function () {
+           $('#BookModal').modal('toggle')
+        }, 2000)
+      },
+      error: function(response){
+        const errMsg = response["responseJSON"]["error"];
+        err_div.innerHTML = `
+          <span id="save_err" class="text-danger">${errMsg}</span>
+        `
+      }
+    });
+    return false;
+  }
+  function mk_apt(){
+    const err_div = document.getElementById('app_err_div');
+    const start_time = document.getElementById('ap_st_time').value;
+    const end_time = document.getElementById('ap_en_time').value;
+    if(!c_time(start_time, end_time)){
+      err_div.innerHTML = `
+          <span id="save_err" class="text-danger">End time can not be set earlier to start time</span>
+        `;
+      return false
+    }
+    let serialize_data = $('#appt_form').serialize();
+    $.ajax({
+      type: 'POST',
+      url: "{% url 'users_make_appointment' users.slug %}",
+      data: serialize_data,
+      success: function(response){
+        const sucMsg = response["message"];
+        err_div.innerHTML = `
+          <span id="save_err" class="text-success">${sucMsg}</span>
+        `;
+        setTimeout(function () {
+           $('#AppModal').modal('toggle')
+        }, 2000)
+      },
+      error: function(response){
+        const errMsg = response["responseJSON"]["error"];
+        err_div.innerHTML = `
+          <span id="save_err" class="text-danger">${errMsg}</span>
+        `
+      }
+    });
+    return false
+  }
+</script>

@@ -1,10 +1,66 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% load static %}
+{% load humanize %}
+<div class="row ml-auto">
+  {% if appointments %}
+      <div class="col">
+        <h5>Recent {{appointments.count}} appointments</h5>
+        {% for app in appointments %}
+          <div class="card bg-light mb-3 mr-4" style="max-width: 30rem;" >
+            <div class="card-header"><h4>{{ app.date }}</h4></div>
+            <div class="card-body">
+              <span class="card-title">From {{ app.start_time }} - {{ app.end_time }}</span>
+              <br>
+              <span>Status:
+                {% if app.status %}
+                  <span class="text-success">Approved!</span>
+                {% else %}
+                  {% if app.declined %}
+                      <span class="text-danger">Declined!</span>
+                  {% else %}
+                    <span class="text-danger">Not Approved Yet!</span>
+                  {% endif %}
+                {% endif %}
+              </span>
+              {% if app.expired %}
+              <br>
+                <span class="text-danger">Expired</span>
+              {% endif %}
+            </div>
+          </div>
+    {% endfor %}
+      </div>
+  {% else %}
+    <h4 class="text-danger">No Appointments with this vendor....</h4>
+  {% endif %}
+  {% if bookings %}
+      <div class="col">
+        <h5>Bookings</h5>
+        {% for booking in bookings %}
+          <div class="card bg-light mb-3 mr-4" style="max-width: 30rem;" >
+            <div class="card-header"><h4>{{ booking.date }}</h4></div>
+            <div class="card-body">
+              <span class="card-title">From {{ booking.start_time }} - {{ booking.end_time }}</span>
+              <br>
+              <span>Status:
+                {% if booking.status %}
+                  <span class="text-success">Approved!</span>
+                {% else %}
+                  {% if booking.declined %}
+                      <span class="text-danger">Declined!</span>
+                  {% else %}
+                    <span class="text-danger">Not Approved Yet!</span>
+                  {% endif %}
+                {% endif %}
+              </span>
+              {% if booking.expired %}
+              <br>
+                <span class="text-danger">Expired</span>
+              {% endif %}
+            </div>
+          </div>
+    {% endfor %}
+      </div>
+  {% else %}
+    <h4 class="text-danger"> No Booking with this vendor</h4>
+  {% endif %}
+</div>

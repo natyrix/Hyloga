@@ -1,10 +1,95 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% load static %}
+{% load humanize %}
+{% if user_chats %}
+  <div class="col-10 py-6 px-7">
+    <div class="row overflow-hidden shadow">
+      <!-- Users box-->
+      <div class="col-4 px-0">
+        <div class="bg-white">
+          <div class="messages-box chat-container">
+            <div class="list-group rounded-0">
+              {% for user_chat in user_chats %}
+                <a class="list-group-item list-group-item-action text-dark rounded-0 btn btn-block" href="{% url 'user_vendor_chat' user_chat.vendor.slug %}">
+                  <div class="media"><img src="{{ user_chat.vendor.logo.url }}" alt="user" width="50" class="right">
+                    <div class="media-body ml-4">
+                      <div class="d-flex align-items-center justify-content-between mb-1">
+                        <h6 class="mb-0">{{ user_chat.vendor.name }}
+                        {% for count in vendor_chat_counts %}
+                            {% if forloop.counter == forloop.parentloop.counter %}
+                              {% if count %}
+                                <span class="text-white bg-primary rounded p-1"><strong>{{count}}</strong></span>
+                              {% endif %}
+                            {% endif %}
+                          {% endfor %}
+                        </h6>
+                      </div>
+                      <p class="font-italic mb-0 text-small">{{ user_chat.message }}</p>
+                      <small class="small font-weight-bold">{{ user_chat.sent_time | naturaltime }}</small>
+                    </div>
+                  </div>
+                </a>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Chat Box-->
+      <div class="col-8 px-0">
+        {% if user_vendor_chat %}
+          <div class="bg-gray px-4 py-2 bg-light list-group chat-container ">
+            <a href="{% url 'users_vendor' ven.slug %}" class="list-group-item list-group-item-action">
+            <img src="{{ ven.logo.url }}" alt="user" width="50" class="rounded-circle">
+            <p class="h5 mb-0 py-1">{{ ven.name }}</p></a>
+          </div>
+          <div class="chat-container px-4 py-5 chat-box bg-white" id="bottom">
+            {% for msg in user_vendor_chat %}
+              <!-- Sender Message-->
+              {% if msg.sender == 'Vendor' %}
+                <div class="media w-50 mb-3"><img src="{{ msg.vendor.logo.url }}" alt="user" width="50" class="rounded-circle">
+                  <div class="media-body ml-3">
+                    <div class="bg-success rounded py-2 px-3 mb-2">
+                      <p class="text-small mb-0 text-white">{{ msg.message }}</p>
+                    </div>
+                    <p class="small text-muted">{{ msg.sent_time.time }} | {{ msg.sent_time.date }}</p>
+                  </div>
+                </div>
+              {% else %}
+                <!-- Reciever Message-->
+                <div class="media w-50 ml-auto mb-3">
+                  <div class="media-body">
+                    <div class="bg-primary rounded py-2 px-3 mb-2">
+                      <p class="text-small mb-0 text-white">{{ msg.message }}</p>
+                    </div>
+                    <p class="small text-muted">{{ msg.sent_time.time }} | {{ msg.sent_time.date }}</p>
+                  </div>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+
+          <!-- Typing area -->
+          <form action="{% url 'user_vendor_send_msg' ven.slug %}" class="bg-light" method="post">
+            {% csrf_token %}
+            <div class="input-group">
+              <input type="text" required placeholder="Type a message" name="msg" aria-describedby="button-addon2" class="form-control rounded-0 border-0 py-4 bg-light">
+              <div class="input-group-append">
+                <button id="button-addon2" type="submit" class="btn btn-link"> <i class="fa fa-paper-plane"></i></button>
+              </div>
+            </div>
+            <hr>
+          </form>
+        {% else %}
+          <br/>
+          <h4 class="text-info text-center">Select one of the messages to view chats</h4>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% else %}
+  <h5>You haven't chatted with any one yet</h5>
+{% endif %}
+
+<script>
+  let myDiv = document.getElementById('bottom');
+  myDiv.scrollTop = myDiv.scrollHeight;
+</script>

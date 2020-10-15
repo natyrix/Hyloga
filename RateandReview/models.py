@@ -10,13 +10,13 @@ class Rate(models.Model):
         ('System', 'System')
     )
     rv = (
-        ('1', '1'),
-        ('2', '2'),
-        ('3', '3'),
-        ('4', '4'),
-        ('5', '5'),
+        (1, 1),
+        (2, 2),
+        (3, 3),
+        (4, 4),
+        (5, 5),
     )
-    rate_value = models.CharField(choices=rv, max_length=3)
+    rate_value = models.IntegerField(choices=rv)
     type = models.CharField(choices=type, max_length=10)
     vendor = models.ForeignKey(Vendor, blank=True, null=True, on_delete=models.DO_NOTHING)
     guest = models.ForeignKey(Guest, blank=True, null=True, on_delete=models.DO_NOTHING)

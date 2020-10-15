@@ -1,8 +1,12 @@
+from django.core.validators import validate_comma_separated_integer_list
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 from datetime import datetime
 from django.db.models.signals import pre_save
+
+from Vendor.models import Category
+from .validators import validate_file_size
 
 
 class Users(models.Model):
@@ -40,21 +44,24 @@ class CheckList(models.Model):
     date_and_time = models.DateTimeField(default=datetime.now)
     status = models.BooleanField(default=False)
     user = models.ForeignKey(Users, on_delete=models.CASCADE)
+    is_passed = models.BooleanField(default=False)
 
     def __str__(self):
         return self.user.first_name + " & " + self.user.fiance_first_name
 
 
 class UsersVideo(models.Model):
-    video_location = models.FileField(upload_to="user_videos/")
+    video_location = models.FileField(upload_to="user_videos/", validators=[validate_file_size])
     user = models.ForeignKey(Users, on_delete=models.CASCADE)
+    status = models.BooleanField(default=False)
 
     def __str__(self):
         return self.user.first_name + " & " + self.user.fiance_first_name
 
 
 class UsersImage(models.Model):
-    image_location = models.ImageField(upload_to="user_photos/")
+    image_location = models.ImageField(upload_to="user_photos/", validators=[validate_file_size])
+    status = models.BooleanField(default=False)
     user = models.ForeignKey(Users, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -62,7 +69,7 @@ class UsersImage(models.Model):
 
 
 class VideoGallery(models.Model):
-    video_location = models.FileField(upload_to="draft_videos/")
+    video_location = models.FileField(upload_to="user_videos/")
     user = models.ForeignKey(Users, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -70,7 +77,7 @@ class VideoGallery(models.Model):
 
 
 class ImageGallery(models.Model):
-    image_location = models.ImageField(upload_to="draft_photos/")
+    image_location = models.ImageField(upload_to="user_photos/")
     user = models.ForeignKey(Users, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -79,7 +86,11 @@ class ImageGallery(models.Model):
 
 class Budget(models.Model):
     amount = models.FloatField()
+    prices = models.CharField(validators=[validate_comma_separated_integer_list], blank=True, max_length=200)
     user = models.ForeignKey(Users, on_delete=models.CASCADE)
+
+    class Meta:
+        unique_together = ('amount', 'prices', 'user')
 
     def __str__(self):
         return self.user.first_name + " & " + self.user.fiance_first_name

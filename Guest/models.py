@@ -6,11 +6,11 @@ from Vendor.models import Vendor
 class Guest(models.Model):
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
-    email = models.CharField(max_length=30, blank=True)
+    email = models.EmailField(max_length=30, blank=True)
     phonenumber = models.CharField(max_length=20)
 
     def __str__(self):
-        return self.first_name
+        return self.first_name+' '+self.last_name
 
 
 class TickedWishList(models.Model):

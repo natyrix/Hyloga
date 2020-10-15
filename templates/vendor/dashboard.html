@@ -7,14 +7,32 @@
     {% include 'vendor/side_nav.html' %}
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
       {% include 'alerts.html' %}
+      {% if 'appointments' in request.path %}
+        {% include 'vendor/appointments.html' %}
+      {% endif %}
+      {% if 'bookings' in request.path %}
+        {% include 'vendor/bookings.html' %}
+      {% endif %}
+      {% if 'chat' in request.path %}
+        {% include 'vendor/vendors_chat.html' %}
+      {% endif %}
       {% if 'pricing' in request.path %}
         {% include 'vendor/pricing.html' %}
+      {% endif %}
+      {% if 'ratings' in request.path %}
+        {% include 'vendor/ratings.html' %}
+      {% endif %}
+      {% if 'reviews' in request.path %}
+        {% include 'vendor/reviews.html' %}
       {% endif %}
       {% if 'gallery' in request.path %}
         {% include 'vendor/gallery.html' %}
       {% endif %}
       {% if 'account' in request.path %}
         {% include 'vendor/account.html' %}
+      {% endif %}
+      {% if 'notification' in request.path %}
+        {% include 'vendor/notifications.html' %}
       {% endif %}
     </main>
   </div>

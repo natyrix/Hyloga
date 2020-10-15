@@ -2,28 +2,63 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1c70c20b-9df9-44d7-9353-d61393f64e45" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Hailoga/static/favicon3.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/users/footer.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/users/nav.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/users/side_nav.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/users/users_base.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/users/vendor.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/users/vendors.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/serializers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Hailoga/static/img/Loading_icon.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/users/appointments.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/users/bookings.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/users/notifications.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/users/users_all_budgets.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/users/users_budget.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/vendor/appointments.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/vendor/bookings.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/vendor/notifications.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/vendor/ratings.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/vendor/reviews.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/vendor/vendors_chat.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Hailoga.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Hailoga.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppointmentandBooking/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/AppointmentandBooking/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chat/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Chat/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Guest/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Guest/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hailoga/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Hailoga/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hailoga/static/css/admin.css" beforeDir="false" afterPath="$PROJECT_DIR$/Hailoga/static/css/admin.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Hailoga/static/css/dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/Hailoga/static/css/dashboard.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hailoga/static/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/Hailoga/static/js/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Hailoga/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Hailoga/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Notification/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Notification/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RateandReview/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/RateandReview/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Users/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/Users/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Users/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/Users/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Users/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Users/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Users/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Users/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Users/validators.py" beforeDir="false" afterPath="$PROJECT_DIR$/Users/validators.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Users/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vendor/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/Vendor/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Vendor/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Vendor/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vendor/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Vendor/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Vendor/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Vendor/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/accounts/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/home/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/home/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/admin.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/admin.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/css/dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/dashboard.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/accounts/register_couple.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/accounts/register_couple.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/vendor/vendor_base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/vendor/vendor_base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/users/account.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/account.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/users/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/users/nav.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/nav.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/users/side_nav.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/side_nav.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/users/users_base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/users_base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/users/users_chat.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/users_chat.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/users/users_check_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/users_check_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/users/users_gallery.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/users_gallery.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/users/users_upload.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/users_upload.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/users/vendor.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/vendor.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/users/vendor_appt_and_book.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/vendor_appt_and_book.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/users/vendor_chat.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/vendor_chat.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/users/vendor_gallery.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/vendor_gallery.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/users/vendors.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/vendors.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/vendor/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/vendor/dashboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/vendor/side_nav.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/vendor/side_nav.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,224 +66,39 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/users/home.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="18" column="32" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Users/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="277">
-              <caret line="142" column="32" lean-forward="true" selection-start-line="142" selection-start-column="25" selection-end-line="142" selection-end-column="33" />
-              <folding>
-                <element signature="e#0#35#0" expanded="true" />
-                <element signature="e#3959#5824#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/RateandReview/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="18" column="14" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/users/vendor.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="645">
-              <caret line="43" column="5" selection-start-line="43" selection-start-column="5" selection-end-line="43" selection-end-column="5" />
-              <folding>
-                <element signature="n#style#0;n#hr#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#4;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#1;n#div#0;n#div#0;n#div#4;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#7;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#1;n#div#0;n#div#0;n#div#7;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#10;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#1;n#div#0;n#div#0;n#div#10;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#13;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#1;n#div#0;n#div#0;n#div#13;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/base.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="81" lean-forward="true" selection-start-line="6" selection-start-column="2" selection-end-line="6" selection-end-column="81" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/templates/users/nav.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="51" selection-start-line="5" selection-start-column="51" selection-end-line="5" selection-end-column="51" />
-              <folding>
-                <element signature="n#style#0;n#h4#0;n#nav#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#h6#0;n#nav#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/users/side_nav.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="22" column="21" lean-forward="true" selection-start-line="18" selection-start-column="11" selection-end-line="22" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
-  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>#10284e</find>
-      <find>bg</find>
-    </findStrings>
-    <replaceStrings>
-      <replace>#343a40</replace>
-    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/templates/about.html" />
-        <option value="$PROJECT_DIR$/templates/accounts/register.html" />
-        <option value="$PROJECT_DIR$/Hailoga/static/css/bootstrap.css" />
-        <option value="$PROJECT_DIR$/templates/accounts/register_couples.html" />
-        <option value="$PROJECT_DIR$/templates/accounts/login_couple.html" />
-        <option value="$PROJECT_DIR$/templates/accounts/login_vendor.html" />
-        <option value="$PROJECT_DIR$/templates/nav.html" />
-        <option value="$PROJECT_DIR$/Users/forms.py" />
-        <option value="$PROJECT_DIR$/templates/accounts/register_vendor.html" />
-        <option value="$PROJECT_DIR$/templates/accounts/login.html" />
-        <option value="$PROJECT_DIR$/accounts/models.py" />
-        <option value="$PROJECT_DIR$/accounts/admin.py" />
-        <option value="$PROJECT_DIR$/templates/vendor/footer.html" />
-        <option value="$PROJECT_DIR$/Notification/models.py" />
-        <option value="$PROJECT_DIR$/templates/index.html" />
-        <option value="$PROJECT_DIR$/accounts/urls.py" />
-        <option value="$PROJECT_DIR$/templates/vendor/edit_pricing.html" />
-        <option value="$PROJECT_DIR$/Hailoga/settings.py" />
-        <option value="$PROJECT_DIR$/templates/vendor/pricing.html" />
-        <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/templates/vendor/gallery.html" />
-        <option value="$PROJECT_DIR$/templates/vendor/accounts.html" />
-        <option value="$PROJECT_DIR$/templates/vendor/dashboard.html" />
-        <option value="$PROJECT_DIR$/templates/vendor/side_nav.html" />
-        <option value="$PROJECT_DIR$/Vendor/form.py" />
-        <option value="$PROJECT_DIR$/templates/vendor/nav.html" />
-        <option value="$PROJECT_DIR$/Vendor/urls.py" />
-        <option value="$PROJECT_DIR$/templates/vendor/account.html" />
-        <option value="$PROJECT_DIR$/templates/accounts/register_couple.html" />
-        <option value="$PROJECT_DIR$/accounts/forms.py" />
-        <option value="$PROJECT_DIR$/Users/models.py" />
-        <option value="$PROJECT_DIR$/Hailoga/urls.py" />
-        <option value="$PROJECT_DIR$/Vendor/views.py" />
-        <option value="$PROJECT_DIR$/accounts/views.py" />
-        <option value="$PROJECT_DIR$/home/views.py" />
-        <option value="$PROJECT_DIR$/templates/users/vendor_base.html" />
-        <option value="$PROJECT_DIR$/templates/users/users_search.html" />
-        <option value="$PROJECT_DIR$/Vendor/models.py" />
-        <option value="$PROJECT_DIR$/Vendor/admin.py" />
-        <option value="$PROJECT_DIR$/templates/users/vendors.html" />
-        <option value="$PROJECT_DIR$/Users/urls.py" />
-        <option value="$PROJECT_DIR$/templates/users/home.html" />
-        <option value="$PROJECT_DIR$/templates/users/side_nav.html" />
-        <option value="$PROJECT_DIR$/Hailoga/static/css/dashboard.css" />
-        <option value="$PROJECT_DIR$/Users/views.py" />
-        <option value="$PROJECT_DIR$/templates/users/vendor.html" />
-        <option value="$PROJECT_DIR$/templates/base.html" />
-        <option value="$PROJECT_DIR$/templates/users/users_base.html" />
-        <option value="$PROJECT_DIR$/templates/admin/base_site.html" />
-        <option value="$PROJECT_DIR$/templates/vendor/vendor_base.html" />
-        <option value="$PROJECT_DIR$/templates/users/nav.html" />
-      </list>
-    </option>
-  </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1920" />
-    <option name="width" value="768" />
-    <option name="height" value="1366" />
-  </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="Hailoga" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Hailoga" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Hailoga" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Hailoga" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Hailoga" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Hailoga" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="vendor" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope" />
-    </panes>
+  <component name="ProjectId" id="1dn8WmPXQGwvtM37MZFkFctHsHs" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Hailoga/static" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Python" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates/users" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/Hailoga/static" />
-      <recent name="$PROJECT_DIR$/Hailoga" />
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/templates/users" />
-      <recent name="$PROJECT_DIR$/media/vendor_images" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Hailoga/static" />
       <recent name="$PROJECT_DIR$/templates" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/templates/users" />
+      <recent name="$PROJECT_DIR$/templates/vendor" />
+      <recent name="$PROJECT_DIR$/Hailoga/static/img" />
+      <recent name="$PROJECT_DIR$/Hailoga/static" />
+      <recent name="$PROJECT_DIR$/Hailoga" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -273,469 +123,64 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1581495230812</updated>
+      <workItem from="1593049542440" duration="1265000" />
+      <workItem from="1593168244559" duration="1578000" />
+      <workItem from="1593170554190" duration="4931000" />
+      <workItem from="1593511189695" duration="32000" />
+      <workItem from="1593511268278" duration="12000" />
+      <workItem from="1593511472024" duration="14000" />
+      <workItem from="1593738224196" duration="12070000" />
+      <workItem from="1594170154930" duration="87000" />
+      <workItem from="1594345007308" duration="8217000" />
+      <workItem from="1594437340845" duration="643000" />
+      <workItem from="1594675411155" duration="1632000" />
+      <workItem from="1594975639773" duration="598000" />
+      <workItem from="1595231671968" duration="1222000" />
+      <workItem from="1596238710976" duration="24546000" />
+      <workItem from="1596422160960" duration="1203000" />
+      <workItem from="1596455999174" duration="4896000" />
+      <workItem from="1596768015833" duration="17088000" />
+      <workItem from="1596884758836" duration="12976000" />
+      <workItem from="1596967367998" duration="596000" />
+      <workItem from="1597038462589" duration="394000" />
+      <workItem from="1597299295127" duration="978000" />
+      <workItem from="1597475667754" duration="599000" />
+      <workItem from="1597542429692" duration="600000" />
+      <workItem from="1597624773236" duration="1112000" />
+      <workItem from="1597923234368" duration="4320000" />
+      <workItem from="1598070067338" duration="18459000" />
+      <workItem from="1598321338263" duration="1151000" />
+      <workItem from="1598497505152" duration="31384000" />
+      <workItem from="1598949118496" duration="1277000" />
+      <workItem from="1600326565442" duration="7428000" />
+      <workItem from="1600412821527" duration="3497000" />
+      <workItem from="1600558723344" duration="744000" />
+      <workItem from="1600673040921" duration="184000" />
+      <workItem from="1602139293794" duration="604000" />
+      <workItem from="1602384528783" duration="819000" />
+      <workItem from="1602488303818" duration="606000" />
     </task>
     <servers />
   </component>
-  <component name="ToolWindowManager">
-    <frame x="1920" y="0" width="1366" height="768" extended-state="6" />
-    <editor active="true" />
-    <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12881608" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32984716" />
-      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.25426358" />
-      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Python Console" order="10" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-    </layout>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
   </component>
   <component name="UnknownFeatures">
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.css" />
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.js" />
+    <option featureType="com.intellij.fileTypeFactory" implementationName="requirements.txt" />
   </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Users/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="75" lean-forward="true" selection-start-line="5" selection-start-column="75" selection-end-line="5" selection-end-column="75" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AppointmentandBooking/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="19" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/accounts/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="30" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/nav.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="42" column="51" selection-end-line="58" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/vendor/footer.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="57" selection-start-column="57" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Notification/migrations/0001_initial.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Notification/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Vendor/migrations/0005_vendor_slug.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AppointmentandBooking/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="28" selection-start-line="6" selection-start-column="28" selection-end-line="6" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/accounts/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="56" selection-start-line="20" selection-start-column="16" selection-end-line="20" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/vendor/edit_pricing.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="53" column="40" lean-forward="true" selection-start-line="53" selection-start-column="40" selection-end-line="53" selection-end-column="40" />
-          <folding>
-            <element signature="n#style#0;n#input#0;n#form#0;n#div#1;n#div#0;n#main#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#form#0;n#div#1;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Hailoga/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/vendor/pricing.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="474">
-          <caret line="52" column="35" selection-start-line="52" selection-start-column="35" selection-end-line="52" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/accounts/register_vendor.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="54" column="20" lean-forward="true" selection-start-line="47" selection-start-column="14" selection-end-line="54" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/vendor/side_nav.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1065">
-          <caret line="71" column="9" selection-start-line="71" selection-start-column="9" selection-end-line="71" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/vendor/account.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" column="61" selection-start-line="25" selection-start-column="61" selection-end-line="25" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Users/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" selection-end-line="8" />
-          <folding>
-            <element signature="e#0#34#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Vendor/form.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="25" column="63" lean-forward="true" selection-start-line="21" selection-start-column="4" selection-end-line="25" selection-end-column="63" />
-          <folding>
-            <element signature="e#0#34#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/accounts/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/accounts/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="11" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="11" />
-          <folding>
-            <element signature="e#0#43#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/accounts/register_couple.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="21" column="63" selection-start-line="21" selection-start-column="55" selection-end-line="21" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/accounts/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="52" selection-start-line="7" selection-start-column="52" selection-end-line="7" selection-end-column="52" />
-          <folding>
-            <element signature="e#0#34#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Hailoga/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="33" selection-start-line="10" selection-start-column="33" selection-end-line="10" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/home/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Users/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="18" column="21" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="21" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/users/footer.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/vendor/nav.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="13" lean-forward="true" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding>
-            <element signature="n#style#0;n#h6#0;n#nav#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/accounts/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2550">
-          <caret line="182" column="63" selection-start-line="182" selection-start-column="63" selection-end-line="182" selection-end-column="63" />
-          <folding>
-            <element signature="e#0#43#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/users/vendors.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="9" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Vendor/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="54" column="80" lean-forward="true" selection-start-line="54" selection-start-column="65" selection-end-line="54" selection-end-column="80" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/vendor/dashboard.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="33" lean-forward="true" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Vendor/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="25" selection-start-line="24" selection-start-column="25" selection-end-line="24" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Hailoga/static/css/all.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-6930" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Vendor/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="45" lean-forward="true" selection-start-line="4" selection-start-column="45" selection-end-line="4" selection-end-column="45" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Users/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="22" selection-start-line="6" selection-start-column="10" selection-end-line="6" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/vendor/gallery.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="67">
-          <caret line="20" selection-start-line="20" selection-end-line="20" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/users/vendors.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="53" lean-forward="true" selection-start-line="10" selection-start-column="53" selection-end-line="10" selection-end-column="61" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/users/side_nav.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="21" lean-forward="true" selection-start-line="18" selection-start-column="11" selection-end-line="22" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Hailoga/static/css/dashboard.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="55" column="17" selection-start-line="55" selection-start-column="17" selection-end-line="55" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Vendor/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="37" column="18" selection-start-line="37" selection-start-column="4" selection-end-line="37" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RateandReview/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="18" column="14" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Users/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="142" column="32" lean-forward="true" selection-start-line="142" selection-start-column="25" selection-end-line="142" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-            <element signature="e#3959#5824#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="81" lean-forward="true" selection-start-line="6" selection-start-column="2" selection-end-line="6" selection-end-column="81" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/users/users_base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="81" selection-start-line="7" selection-start-column="81" selection-end-line="7" selection-end-column="81" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/admin/base_site.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="14" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/vendor/vendor_base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="81" selection-start-line="7" selection-start-column="81" selection-end-line="7" selection-end-column="81" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/users/home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="32" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/users/vendor.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="645">
-          <caret line="43" column="5" selection-start-line="43" selection-start-column="5" selection-end-line="43" selection-end-column="5" />
-          <folding>
-            <element signature="n#style#0;n#hr#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#4;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#1;n#div#0;n#div#0;n#div#4;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#7;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#1;n#div#0;n#div#0;n#div#7;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#10;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#1;n#div#0;n#div#0;n#div#10;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#13;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#1;n#div#0;n#div#0;n#div#13;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/users/nav.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="51" selection-start-line="5" selection-start-column="51" selection-end-line="5" selection-end-column="51" />
-          <folding>
-            <element signature="n#style#0;n#h4#0;n#nav#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#h6#0;n#nav#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

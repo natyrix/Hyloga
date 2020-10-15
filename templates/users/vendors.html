@@ -1,19 +1,105 @@
 {% load static %}
+{% load humanize %}
 {% if 'vendors' %}
+  <div class="">
+  <hr>
+    <div class="card bg-light">
+      <div class="card-body">
+        <h4>Filter vendors by choosing one or more options below</h4>
+        <div class="row">
+          <div class="col">
+            <h6>Filter with categories:</h6>
+            <select name="cat" id="cat" class="form-control" onchange="setCat()">
+              <option value="All">All</option>
+              {% for category in categories %}
+                <option value="{{category}}"
+                >{{category}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="col">
+            <h6>Filter with ratings:</h6>
+            <select name="rating" id="rating" class="form-control" onchange="setRate()">
+              <option value="All" selected="selected">All</option>
+              <option value="4">> 4 star</option>
+              <option value="3">> 3 star</option>
+              <option value="2">> 2 star</option>
+              <option value="1">> 1 star</option>
+            </select>
+          </div>
+          <div class="col-2">
+            <br>
+            <a id="filter_btn" href="?" class="form-control btn btn-secondary">Filter</a>
+          </div>
+        </div>
+        {% if selected_cat %}
+          <hr>
+          <h6>Selected category: {{selected_cat}}</h6>
+          <h6>Selected rating value: {{selected_rating}}</h6>
+          <hr>
+        {% endif %}
+      </div>
+    </div>
+  <hr>
+  </div>
   <div class="row">
   {% for vendor in vendors %}
     <div class="card mb-4 mr-4" style="width: 18rem;">
-      <img src="{{ vendor.logo.url }}" class="card-img-top fit-image" alt="...">
+      <a href="{% url 'users_vendor' vendor.slug %}">
+        <img src="{{ vendor.logo.url }}" class="card-img-top fit-image" alt="...">
+      </a>
       <div class="card-body">
-        <h4 class="text-primary">{{ vendor.name }}</h4>
+        <h4 class="text-primary"><a href="{% url 'users_vendor' vendor.slug %}">{{ vendor.name }}</a></h4>
         </div>
       <ul class="list-group list-group-flush">
         <li class="list-group-item"><i class="fas fa-th-large"></i> Category: {{ vendor.category }}</li>
         <li class="list-group-item"><i class="fas fa-phone"></i> Phone Number: {{ vendor.phonenumber }}</li>
         <li class="list-group-item"><i class="fas fa-map-marker-alt"></i> Address: {{ vendor.address }}</li>
+        <li class="list-group-item"><i class="fas fa-star"></i> Rating:
+          {% for rating in ratings %}
+            {% if forloop.counter == forloop.parentloop.counter%}
+              <span
+                {% if rating >= 1 %}
+                  class="fa fa-star checked"
+                {% else %}
+                  class="fa fa-star"
+                {% endif %}
+              ></span>
+              <span
+                {% if rating >= 2 %}
+                  class="fa fa-star checked"
+                {% else %}
+                  class="fa fa-star"
+                {% endif %}
+              ></span>
+              <span
+                {% if rating >= 3 %}
+                  class="fa fa-star checked"
+                {% else %}
+                  class="fa fa-star"
+                {% endif %}
+              ></span>
+              <span
+                {% if rating >= 4 %}
+                  class="fa fa-star checked"
+                {% else %}
+                  class="fa fa-star"
+                {% endif %}
+              ></span>
+              <span
+                {% if rating >= 5 %}
+                  class="fa fa-star checked"
+                {% else %}
+                  class="fa fa-star"
+                {% endif %}
+              ></span>
+              ({{rating | floatformat:1 }})
+            {% endif %}
+          {% endfor %}
+        </li>
       </ul>
       <div class="card-body">
-       <a href="{% url 'users_vendor' vendor.id %}" class="btn btn-primary btn-block">More Info</a>
+       <a href="{% url 'users_vendor' vendor.slug %}" class="btn btn-primary btn-block">More Info</a>
       </div>
     </div>
   {% endfor %}
@@ -29,7 +115,7 @@
       <ul class="pagination">
         {% if vendors.has_previous %}
           <li class="page-item">
-            <a href="?page={{vendors.previous_page_number}}" class="page-link">&laquo;</a>
+            <a href="?page={{vendors.previous_page_number}}&cat={{selected_cat}}&rating={{selected_rating}}" class="page-link">&laquo;</a>
           </li>
         {% else %}
           <li class="page-item disabled">
@@ -43,13 +129,13 @@
             </li>
           {% else %}
             <li class="page-item">
-              <a href="?page={{i}}" class="page-link">{{i}}</a>
+              <a href="?page={{i}}&cat={{selected_cat}}&rating={{selected_rating}}" class="page-link">{{i}}</a>
             </li>
           {% endif %}
         {% endfor %}
         {% if vendors.has_next %}
           <li class="page-item">
-            <a href="?page={{vendors.next_page_number}}" class="page-link">&raquo;</a>
+            <a href="?page={{vendors.next_page_number}}&cat={{selected_cat}}&rating={{selected_rating}}" class="page-link">&raquo;</a>
           </li>
         {% else %}
           <li class="page-item disabled">
@@ -60,3 +146,23 @@
     {% endif %}
   </div>
 </div>
+<script>
+  const selected_cat = '{{ selected_cat }}';
+  const selected_rating = '{{ selected_rating }}';
+  document.getElementById('cat').value = selected_cat.toString();
+  document.getElementById('rating').value = selected_rating.toString();
+  let rate_val = document.getElementById('rating').value;
+  let cat_val = document.getElementById('cat').value;
+  const filter_btn = document.getElementById('filter_btn');
+  filter_btn.setAttribute('href', `?cat=${cat_val}&rating=${rate_val}`);
+  function setCat() {
+    cat_val = document.getElementById('cat').value;
+    filter_btn.setAttribute('href', `?cat=${cat_val}&rating=${rate_val}`)
+  }
+  function setRate() {
+    rate_val = document.getElementById('rating').value;
+    filter_btn.setAttribute('href', `?cat=${cat_val}&rating=${rate_val}`)
+
+  }
+
+</script>

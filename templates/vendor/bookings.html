@@ -1,0 +1,122 @@
+{% load static %}
+{% load humanize %}
+{% if bookings %}
+    <h4>Filter bookings by choosing an options below:</h4>
+    <div class="row">
+        <div class="col-4">
+            <select name="filter" id="filter" class="form-control" onchange="setfilter()">
+                <option value="All">All</option>
+                <option value="approved">Approved</option>
+                <option value="not_approved">Not Approved</option>
+                <option value="declined">Declined</option>
+                <option value="expired">Expired</option>
+                <option value="canceled">Canceled</option>
+            </select>
+        </div>
+        <div class="col-2">
+            <a id="filter_btn" href="?" class="form-control btn btn-secondary">Filter</a>
+        </div>
+    </div>
+<hr>
+    <div class="row ml-auto">
+        {% for bookg in bookings %}
+          <div class="card bg-light mb-3 mr-4" style="max-width: 30rem;" >
+            <div class="card-header"><h4>{{ bookg.date }}</h4>
+            </div>
+            <div class="card-body">
+              <span class="card-title">From {{ bookg.start_time }} - {{ bookg.end_time }}</span>
+              <br>
+              <br>
+                <span>Booked by: {{bookg.user}}</span>
+                <hr>
+              <span>Status:
+                {% if bookg.status %}
+                  <span class="text-success">Approved!</span>
+                {% else %}
+                    {% if bookg.declined %}
+                      <span class="text-danger">Declined!</span>
+                    {% else %}
+                        <span class="text-danger">Not Approved Yet!</span>
+                    {% endif %}
+                {% endif %}
+              </span>
+                <hr>
+               <div class="">
+                   {% if not bookg.expired and not bookg.canceled %}
+                       {% if not bookg.status %}
+                            <a class="btn btn-outline-success mr-5 mb-1" href="{% url 'vendor_approve_booking' bookg.id%}">
+                                <i class="fa fa-calendar-plus"></i> Approve</a>
+                            {% if not bookg.declined %}
+                                <a class="btn btn-outline-danger" href="{% url 'vendor_decline_booking' bookg.id%}">
+                                    <i class="fa fa-calendar-minus"></i> Decline</a>
+                             {% endif %}
+                       {% endif %}
+                   {% else %}
+                        {% if bookg.canceled %}
+                            <span class="text-danger">
+                                Canceled by {{bookg.user}}
+                            </span>
+                        {% else %}
+                            <span class="text-danger">
+                                Canceled by {{bookg.user}}
+                            </span>
+                        {% endif %}
+                   {% endif %}
+
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <h6>You have no bookings yet!</h6>
+{% endif %}
+
+<div class="row">
+  <div class="col-md-12">
+    {% if bookings.has_other_pages %}
+      <ul class="pagination">
+        {% if bookings.has_previous %}
+          <li class="page-item">
+            <a href="?page={{bookings.previous_page_number}}" class="page-link">&laquo;</a>
+          </li>
+        {% else %}
+          <li class="page-item disabled">
+            <a class="page-link">&laquo;</a>
+          </li>
+        {% endif %}
+        {% for i in bookings.paginator.page_range %}
+          {% if bookings.number == i %}
+            <li class="page-item active">
+              <a class="page-link">{{i}}</a>
+            </li>
+          {% else %}
+            <li class="page-item">
+              <a href="?page={{i}}" class="page-link">{{i}}</a>
+            </li>
+          {% endif %}
+        {% endfor %}
+        {% if bookings.has_next %}
+          <li class="page-item">
+            <a href="?page={{bookings.next_page_number}}" class="page-link">&raquo;</a>
+          </li>
+        {% else %}
+          <li class="page-item disabled">
+            <a class="page-link">&raquo;</a>
+          </li>
+        {% endif %}
+      </ul>
+    {% endif %}
+  </div>
+</div>
+<script>
+    const selected_filter = '{{selected_filter}}';
+    document.getElementById('filter').value = selected_filter.toString();
+    let filter_val = document.getElementById('filter').value;
+    const filter_btn = document.getElementById('filter_btn');
+    filter_btn.setAttribute('href', `?filter=${filter_val}`);
+    function setfilter() {
+        filter_val = document.getElementById('filter').value;
+        filter_btn.setAttribute('href', `?filter=${filter_val}`);
+    }
+</script>
