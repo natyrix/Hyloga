@@ -4,7 +4,6 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '$12evuo-xjn15r0*rmk8-7&adsk%2%rebyty+v2vtq07^$++&+'
 
@@ -13,6 +12,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     '192.168.1.112',
+    '10.6.221.222',
+    '192.168.42.245',
+    '192.168.44.254',
+    '192.168.43.202',
     'localhost'
 ]
 

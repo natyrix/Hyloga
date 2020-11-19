@@ -2,63 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1c70c20b-9df9-44d7-9353-d61393f64e45" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/API/serializers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/API/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Hailoga/static/img/Loading_icon.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/users/appointments.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/users/bookings.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/users/notifications.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/users/users_all_budgets.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/users/users_budget.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/vendor/appointments.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/vendor/bookings.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/vendor/notifications.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/vendor/ratings.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/vendor/reviews.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/vendor/vendors_chat.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Hailoga.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Hailoga.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AppointmentandBooking/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/AppointmentandBooking/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Chat/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Chat/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Guest/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Guest/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/API/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/API/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/API/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Hailoga/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Hailoga/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Hailoga/static/css/admin.css" beforeDir="false" afterPath="$PROJECT_DIR$/Hailoga/static/css/admin.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Hailoga/static/css/dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/Hailoga/static/css/dashboard.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Hailoga/static/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/Hailoga/static/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Hailoga/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Hailoga/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notification/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Notification/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RateandReview/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/RateandReview/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Users/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/Users/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Users/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/Users/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Users/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Users/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Users/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Users/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Users/validators.py" beforeDir="false" afterPath="$PROJECT_DIR$/Users/validators.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Users/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vendor/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Vendor/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vendor/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Vendor/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vendor/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Vendor/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/admin.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/admin.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/dashboard.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/users/account.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/account.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/users/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/users/nav.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/nav.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/users/side_nav.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/side_nav.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/users/users_base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/users_base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/users/users_chat.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/users_chat.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/users/users_check_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/users_check_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/users/users_gallery.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/users_gallery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/users/users_upload.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/users_upload.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/users/vendor.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/vendor.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/users/vendor_appt_and_book.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/vendor_appt_and_book.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/users/vendor_chat.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/vendor_chat.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/users/vendor_gallery.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/vendor_gallery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/users/vendors.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/vendors.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/vendor/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/vendor/dashboard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/vendor/side_nav.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/vendor/side_nav.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -86,7 +34,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/templates/users" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -159,6 +107,26 @@
       <workItem from="1602139293794" duration="604000" />
       <workItem from="1602384528783" duration="819000" />
       <workItem from="1602488303818" duration="606000" />
+      <workItem from="1603355273106" duration="2120000" />
+      <workItem from="1603528538312" duration="2200000" />
+      <workItem from="1603584218538" duration="3696000" />
+      <workItem from="1603699459694" duration="3729000" />
+      <workItem from="1603917805661" duration="2910000" />
+      <workItem from="1603992105932" duration="3276000" />
+      <workItem from="1604061513596" duration="16303000" />
+      <workItem from="1604127437167" duration="596000" />
+      <workItem from="1604464768480" duration="332000" />
+      <workItem from="1604465916357" duration="205000" />
+      <workItem from="1604466215460" duration="5632000" />
+      <workItem from="1604533608873" duration="4975000" />
+      <workItem from="1604999988554" duration="4063000" />
+      <workItem from="1605077415945" duration="1813000" />
+      <workItem from="1605145767550" duration="2972000" />
+      <workItem from="1605231957662" duration="11308000" />
+      <workItem from="1605273663329" duration="105000" />
+      <workItem from="1605304265409" duration="2859000" />
+      <workItem from="1605336940691" duration="2448000" />
+      <workItem from="1605770661898" duration="5500000" />
     </task>
     <servers />
   </component>
