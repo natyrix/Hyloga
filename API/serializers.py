@@ -1,9 +1,11 @@
+from django.contrib.auth.models import User
 from rest_framework import serializers
 
 from AppointmentandBooking.models import Booking, Appointment
 from Chat.models import Chat
+from Notification.models import Notification
 from RateandReview.models import Review, Rate
-from Users.models import Users, ImageGallery, VideoGallery, UsersImage
+from Users.models import Users, ImageGallery, VideoGallery, UsersImage, UsersVideo
 from Vendor.models import Vendor, Category, Pricing, VendorImage
 
 
@@ -125,3 +127,46 @@ class UsersImageUploadSerializer(serializers.ModelSerializer):
     class Meta:
         model = UsersImage
         fields = ['id', 'image_location', 'user']
+
+
+class UsersVideoUploadSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = UsersVideo
+        fields = ['id', 'video_location', 'user']
+
+
+class LoginUserUpdateSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'email']
+
+
+class ChangePasswordSerializer(serializers.Serializer):
+    old_pass = serializers.CharField()
+    new_pass = serializers.CharField()
+    con_pass = serializers.CharField()
+
+
+class NotificationSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Notification
+        fields = ['id', 'title', 'notification_date', 'read_status']
+
+
+class BookingSerializerOne(serializers.ModelSerializer):
+    vendor_name = serializers.CharField(source='vendor')
+
+    class Meta:
+        model = Booking
+        fields = ['id', 'start_time', 'end_time', 'date', 'status', 'expired', 'declined', 'canceled', 'vendor_name']
+
+
+class AppointmentSerializerOne(serializers.ModelSerializer):
+    vendor_name = serializers.CharField(source='vendor')
+
+    class Meta:
+        model = Appointment
+        fields = ['id', 'start_time', 'date', 'end_time', 'status', 'expired', 'declined', 'canceled', 'vendor_name']

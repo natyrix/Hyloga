@@ -1,3 +1,6 @@
+import datetime
+
+from django.contrib.auth.models import User
 from django.shortcuts import render
 from rest_framework import viewsets, views, status
 from rest_framework.authtoken.models import Token
@@ -6,11 +9,14 @@ from django.db.models import QuerySet, Avg
 from API.serializers import VendorSerializer, UsersSerializer, SendMessageSerializer, PricingSerializer, \
     BookingSerializer, AppointmentSerializer, ReviewSerializer, VendorImageSerializer, VendorChatSerializer, \
     RateVendorSerializer, RateVendorSerializer1, ReviewVendorSerializer, ReviewVendorSerializer1, UsersImageSerializer, \
-    UsersVideoSerializer, UsersImageUploadSerializer
+    UsersVideoSerializer, UsersImageUploadSerializer, UsersVideoUploadSerializer, LoginUserUpdateSerializer, \
+    ChangePasswordSerializer, NotificationSerializer, AppointmentSerializerOne, BookingSerializerOne
 from AppointmentandBooking.models import Appointment, Booking
 from Chat.models import sender, Chat
+from Notification.models import Notification, ty
 from RateandReview.models import Rate, Review
 from Users.models import Users, ImageGallery, VideoGallery
+from Users.views import setExpired
 from Vendor.models import Vendor, Pricing, VendorImage
 from rest_framework.permissions import AllowAny
 from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
@@ -21,6 +27,7 @@ def returnUsersObjFromToken(token):
     users = Users.objects.filter(login_id=user.user)
     if users.exists():
         users = users.first()
+        setExpired(users)
         return users
     return None
 
@@ -43,6 +50,42 @@ class UsersViewSet(views.APIView):
         if users is not None:
             serializer = UsersSerializer(users)
             return Response(serializer.data)
+        else:
+            return Response({"message": "Authentication Failed"},
+                            status=status.HTTP_403_FORBIDDEN)
+
+    def post(self, request):
+        users = returnUsersObjFromToken(str(request.META.get('HTTP_AUTHORIZATION')).split(" "))
+        if users is not None:
+            date_time_obj = datetime.datetime.strptime(request.data['wedding_date'], '%Y-%m-%d %H:%M:%S.%f')
+            data = {
+                "first_name": request.data['first_name'],
+                "last_name": request.data['last_name'],
+                "email": request.data['email'],
+                "role": request.data['role'],
+                "wedding_date": date_time_obj.date(),
+                "fiance_first_name": request.data['fiance_first_name'],
+                "fiance_last_name": request.data['fiance_last_name'],
+                "fiance_email": request.data['fiance_email'],
+            }
+            login_user = User.objects.get(pk=users.login_id.id)
+            login_data = {
+                "username": str(request.data['email']).split('@')[0],
+                "email": str(request.data['email'])
+            }
+            serializer = UsersSerializer(users, data=data, partial=True)
+            if serializer.is_valid():
+                serializer.save()
+                login_serializer = LoginUserUpdateSerializer(login_user, data=login_data, partial=True)
+                if login_serializer.is_valid():
+                    login_serializer.save()
+                    return Response({"message": "Profile updated successfully"})
+                else:
+                    print(login_serializer.errors)
+                    return Response({"message": "Invalid data provided"}, status=status.HTTP_400_BAD_REQUEST)
+            else:
+                print(serializer.errors)
+                return Response({"message": "Invalid data provided"}, status=status.HTTP_400_BAD_REQUEST)
         else:
             return Response({"message": "Authentication Failed"},
                             status=status.HTTP_403_FORBIDDEN)
@@ -250,7 +293,7 @@ class VendorRateViewSet(views.APIView):
                         print(rating_serializer.errors)
                         return Response({
                             "message": "Invalid data provided"
-                        }, status=status.HTTP_304_NOT_MODIFIED)
+                        }, status=status.HTTP_400_BAD_REQUEST)
                 else:
                     d = {
                         'rate_value': rat_val,
@@ -268,7 +311,7 @@ class VendorRateViewSet(views.APIView):
                         print(rating_serializer.errors)
                         return Response({
                             "message": "Invalid data provided"
-                        }, status=status.HTTP_304_NOT_MODIFIED)
+                        }, status=status.HTTP_400_BAD_REQUEST)
             else:
                 return Response({"message": "Unable to fetch data"},
                                 status=status.HTTP_404_NOT_FOUND)
@@ -320,7 +363,7 @@ class VendorReviewViewSet(views.APIView):
                         print(review_serializer.errors)
                         return Response({
                             "message": "Invalid data provided"
-                        }, status=status.HTTP_304_NOT_MODIFIED)
+                        }, status=status.HTTP_400_BAD_REQUEST)
                 else:
                     d = {
                         'review': rev,
@@ -338,7 +381,7 @@ class VendorReviewViewSet(views.APIView):
                         print(review_serializer.errors)
                         return Response({
                             "message": "Invalid data provided"
-                        }, status=status.HTTP_304_NOT_MODIFIED)
+                        }, status=status.HTTP_400_BAD_REQUEST)
             else:
                 return Response({"message": "Unable to fetch data"},
                                 status=status.HTTP_404_NOT_FOUND)
@@ -383,6 +426,24 @@ class UserImageViewSet(views.APIView):
             return Response({"message": "Authentication Failed"},
                             status=status.HTTP_403_FORBIDDEN)
 
+    def delete(self, request, pk):
+        users = returnUsersObjFromToken(str(request.META.get('HTTP_AUTHORIZATION')).split(" "))
+        if users is not None:
+            assert int(pk), "Invalid id provided"
+            image = ImageGallery.objects.filter(pk=int(pk), user=users)
+            if image.exists():
+                image = image.first()
+                image.delete()
+                return Response({
+                    "message": "Image removed successfully"
+                })
+            else:
+                Response({"message": "Image not found"},
+                         status=status.HTTP_404_NOT_FOUND)
+        else:
+            return Response({"message": "Authentication Failed"},
+                            status=status.HTTP_403_FORBIDDEN)
+
 
 class UserVideoViewSet(views.APIView):
     def get(self, request):
@@ -394,6 +455,173 @@ class UserVideoViewSet(views.APIView):
                 return Response(serializer.data)
             else:
                 return Response({"message": "You have no video uploads"},
+                                status=status.HTTP_404_NOT_FOUND)
+        else:
+            return Response({"message": "Authentication Failed"},
+                            status=status.HTTP_403_FORBIDDEN)
+
+    def post(self, request):
+        users = returnUsersObjFromToken(str(request.META.get('HTTP_AUTHORIZATION')).split(" "))
+        if users is not None:
+            vid_data = {
+                'video_location': request.data['file_field'],
+                'user': users.id
+            }
+            vid_serializer = UsersVideoUploadSerializer(data=vid_data)
+            if vid_serializer.is_valid():
+                # vid_serializer.save()
+                return Response("Upload successful")
+            else:
+                print(vid_serializer.errors)
+                return Response("Error occurred",
+                                status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response({"message": "Authentication Failed"},
+                            status=status.HTTP_403_FORBIDDEN)
+
+    def delete(self, request, pk):
+        users = returnUsersObjFromToken(str(request.META.get('HTTP_AUTHORIZATION')).split(" "))
+        if users is not None:
+            assert int(pk), "Invalid id provided"
+            video = VideoGallery.objects.filter(pk=int(pk), user=users)
+            if video.exists():
+                video = video.first()
+                # video.delete()
+                return Response({
+                    "message": "Video removed successfully"
+                })
+            else:
+                Response({"message": "Video not found"},
+                         status=status.HTTP_404_NOT_FOUND)
+        else:
+            return Response({"message": "Authentication Failed"},
+                            status=status.HTTP_403_FORBIDDEN)
+
+
+class ChangePasswordViewSet(views.APIView):
+
+    def patch(self, request):
+        users = returnUsersObjFromToken(str(request.META.get('HTTP_AUTHORIZATION')).split(" "))
+        if users is not None:
+            user = User.objects.get(pk=users.login_id.id)
+            serializer = ChangePasswordSerializer(data=request.data)
+            if serializer.is_valid():
+                new_pass = serializer.data.get('new_pass')
+                con_pass = serializer.data.get('con_pass')
+                old_pass = serializer.data.get('old_pass')
+                if new_pass == con_pass:
+                    if old_pass != new_pass:
+                        if user.check_password(old_pass):
+                            user.set_password(new_pass)
+                            user.save()
+                            return Response({
+                                'message': 'Password Updated Successfully'
+                            })
+                        else:
+                            return Response({"message": "Invalid old password"}, status=status.HTTP_400_BAD_REQUEST)
+                    else:
+                        return Response({
+                            'message': 'Old password is the same as new password'}, status=status.HTTP_400_BAD_REQUEST)
+                else:
+                    return Response({
+                        'message': 'Passwords should match'
+                    }, status=status.HTTP_400_BAD_REQUEST)
+            else:
+                print(serializer.errors)
+                return Response({"message": "Invalid data provided"}, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response({"message": "Authentication Failed"},
+                            status=status.HTTP_403_FORBIDDEN)
+
+
+class NotificationViewSet(views.APIView):
+    def get(self, request):
+        users = returnUsersObjFromToken(str(request.META.get('HTTP_AUTHORIZATION')).split(" "))
+        if users is not None:
+            notifications = Notification.objects.filter(user=users, type=ty[1][0]).order_by('-id')
+            if notifications.exists():
+                serializer = NotificationSerializer(notifications, many=True)
+                return Response(serializer.data)
+            else:
+                return Response({"message": "No notifications"},
+                                status=status.HTTP_404_NOT_FOUND)
+        else:
+            return Response({"message": "Authentication Failed"},
+                            status=status.HTTP_403_FORBIDDEN)
+
+
+class UserAppointmentsViewSet(views.APIView):
+    def get(self, request):
+        users = returnUsersObjFromToken(str(request.META.get('HTTP_AUTHORIZATION')).split(" "))
+        if users is not None:
+            appointments = Appointment.objects.filter(user=users).order_by('-id')
+            if appointments.exists():
+                serializer = AppointmentSerializerOne(appointments, many=True)
+                return Response(serializer.data)
+            else:
+                return Response({"message": "You have no appointments"},
+                                status=status.HTTP_404_NOT_FOUND)
+        else:
+            return Response({"message": "Authentication Failed"},
+                            status=status.HTTP_403_FORBIDDEN)
+
+    def patch(self, request, pk):
+        users = returnUsersObjFromToken(str(request.META.get('HTTP_AUTHORIZATION')).split(" "))
+        if users is not None:
+            appointment = Appointment.objects.filter(user=users, pk=pk)
+            if appointment.exists():
+                data = {
+                    "canceled": True
+                }
+                appointment = appointment.first()
+                serializer = AppointmentSerializer(appointment, data=data,partial=True)
+                if serializer.is_valid():
+                    serializer.save()
+                    return Response({"message": "Appointment canceled"})
+                else:
+                    return Response({"message": "Invalid data provided"},
+                                    status=status.HTTP_400_BAD_REQUEST)
+            else:
+                return Response({"message": "Appointment not found"},
+                                status=status.HTTP_404_NOT_FOUND)
+        else:
+            return Response({"message": "Authentication Failed"},
+                            status=status.HTTP_403_FORBIDDEN)
+
+
+class UserBookingsViewSet(views.APIView):
+    def get(self, request):
+        users = returnUsersObjFromToken(str(request.META.get('HTTP_AUTHORIZATION')).split(" "))
+        if users is not None:
+            bookings = Booking.objects.filter(user=users).order_by('-id')
+            if bookings.exists():
+                serializer = BookingSerializerOne(bookings, many=True)
+                return Response(serializer.data)
+            else:
+                return Response({"message": "You have no bookings"},
+                                status=status.HTTP_404_NOT_FOUND)
+        else:
+            return Response({"message": "Authentication Failed"},
+                            status=status.HTTP_403_FORBIDDEN)
+
+    def patch(self, request, pk):
+        users = returnUsersObjFromToken(str(request.META.get('HTTP_AUTHORIZATION')).split(" "))
+        if users is not None:
+            booking = Booking.objects.filter(user=users, pk=pk)
+            if booking.exists():
+                data = {
+                    "canceled": True
+                }
+                booking = booking.first()
+                serializer = BookingSerializer(booking, data=data, partial=True)
+                if serializer.is_valid():
+                    serializer.save()
+                    return Response({"message": "Booking canceled"})
+                else:
+                    return Response({"message": "Invalid data provided"},
+                                    status=status.HTTP_400_BAD_REQUEST)
+            else:
+                return Response({"message": "Appointment not found"},
                                 status=status.HTTP_404_NOT_FOUND)
         else:
             return Response({"message": "Authentication Failed"},

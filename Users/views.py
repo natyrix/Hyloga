@@ -24,8 +24,8 @@ import threading
 
 def setExpired(user):
     now = datetime.now()
-    appts = Appointment.objects.filter(date__lt=now, user=user, expired=False, status=False, declined=False, canceled=False)
-    bkgs = Booking.objects.filter(date__lt=now, user=user, expired=False, status=False, declined=False, canceled=False)
+    appts = Appointment.objects.filter(date__lt=now, user=user, expired=False,)
+    bkgs = Booking.objects.filter(date__lt=now, user=user, expired=False,)
     chklists = CheckList.objects.filter(date_and_time__lt=now, user=user, is_passed=False, status=False)
     for ap in appts:
         ap.expired = True
