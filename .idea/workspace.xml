@@ -6,7 +6,7 @@
       <change beforePath="$PROJECT_DIR$/API/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/API/serializers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/API/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/API/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Users/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -128,7 +128,13 @@
       <workItem from="1605336940691" duration="2448000" />
       <workItem from="1605770661898" duration="6925000" />
       <workItem from="1605857907268" duration="5982000" />
-      <workItem from="1605940978192" duration="17268000" />
+      <workItem from="1605940978192" duration="17387000" />
+      <workItem from="1606129425481" duration="26000" />
+      <workItem from="1606203434122" duration="10496000" />
+      <workItem from="1606265044697" duration="6593000" />
+      <workItem from="1606299787735" duration="4962000" />
+      <workItem from="1606384680696" duration="5962000" />
+      <workItem from="1606465248326" duration="9599000" />
     </task>
     <servers />
   </component>

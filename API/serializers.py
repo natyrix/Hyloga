@@ -5,7 +5,7 @@ from AppointmentandBooking.models import Booking, Appointment
 from Chat.models import Chat
 from Notification.models import Notification
 from RateandReview.models import Review, Rate
-from Users.models import Users, ImageGallery, VideoGallery, UsersImage, UsersVideo
+from Users.models import Users, ImageGallery, VideoGallery, UsersImage, UsersVideo, CheckList
 from Vendor.models import Vendor, Category, Pricing, VendorImage
 
 
@@ -48,13 +48,13 @@ class BookingSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Booking
-        fields = ['id', 'start_time', 'end_time', 'date', 'status', 'expired', 'declined', 'canceled']
+        fields = ['id', 'start_time', 'end_time', 'date', 'status', 'expired', 'declined', 'canceled', 'vendor', 'user']
 
 
 class AppointmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Appointment
-        fields = ['id', 'start_time', 'date', 'end_time', 'status', 'expired', 'declined', 'canceled']
+        fields = ['id', 'start_time', 'date', 'end_time', 'status', 'expired', 'declined', 'canceled', 'vendor', 'user']
 
 
 class ReviewSerializer(serializers.ModelSerializer):
@@ -170,3 +170,27 @@ class AppointmentSerializerOne(serializers.ModelSerializer):
     class Meta:
         model = Appointment
         fields = ['id', 'start_time', 'date', 'end_time', 'status', 'expired', 'declined', 'canceled', 'vendor_name']
+
+
+class CheckListSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = CheckList
+        fields = '__all__'
+
+
+class UserChatSerializer(serializers.ModelSerializer):
+    vendor = VendorSerializer()
+
+    class Meta:
+        model = Chat
+        fields = '__all__'
+
+
+class PricingSerializerOne(serializers.ModelSerializer):
+    vendor = VendorSerializer()
+
+    class Meta:
+        model = Pricing
+        fields = '__all__'
+

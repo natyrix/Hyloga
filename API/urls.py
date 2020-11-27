@@ -5,7 +5,7 @@ from rest_framework.authtoken.views import obtain_auth_token
 from API.views import VendorViewSet, UsersViewSet, SendMessageViewSet, VendorPricingViewSet, ApptViewSet, \
     BookingViewSet, ReviewViewSet, VendorImageViewSet, VendorChatViewSet, VendorRateViewSet, VendorReviewViewSet, \
     UserImageViewSet, UserVideoViewSet, ChangePasswordViewSet, NotificationViewSet, UserAppointmentsViewSet, \
-    UserBookingsViewSet
+    UserBookingsViewSet, CheckListViewSet, UserChatViewSet, UsersBudgetViewSet, UsersCalcBudget, UsersHome
 
 # router = DefaultRouter()
 # router.register('vendors', VendorViewSet)
@@ -33,6 +33,13 @@ urlpatterns = [
     path('users/appointments/cancel/<int:pk>/', UserAppointmentsViewSet.as_view()),
     path('users/bookings/', UserBookingsViewSet.as_view()),
     path('users/bookings/cancel/<int:pk>/', UserBookingsViewSet.as_view()),
+    path('users/checklists/', CheckListViewSet.as_view()),
+    path('users/checklist/update/<int:pk>/', CheckListViewSet.as_view()),
+    path('users/chats/', UserChatViewSet.as_view()),
+    path('users/budgets/', UsersBudgetViewSet.as_view()),
+    path('users/home/', UsersHome.as_view()),
+    path('vendors/categories/', UsersCalcBudget.as_view()),
+
 ]
 
 

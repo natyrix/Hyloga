@@ -194,9 +194,9 @@ def login(request):
 
 def logout(request):
     if request.method == 'POST':
-        us = Users.objects.all()
-        for u in us:
-            Token.objects.create(user=u.login_id)
+        # us = Users.objects.all()
+        # for u in us:
+        #     Token.objects.create(user=u.login_id)
         auth.logout(request)
         messages.success(request, "You are logged out")
         return render(request, 'index.html')
